@@ -24,7 +24,6 @@ namespace Cloud9
         public static Tile Dirt = new Tile(1, 0);
         public static Tile Grass = new Tile(2, 65);
         public static Tile Planks = new Tile(3, 99);
-        public static Tile trampoline = new TileTrampoline(4, 5).SetSize(new Vector2(2, 1));
         
         /// <summary>
         /// Create a new tile

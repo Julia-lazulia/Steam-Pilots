@@ -31,5 +31,7 @@ namespace Cloud9
         {
             World.Instance.SpriteBatch.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), text, position, color);
         }
+
+        public abstract void Update();
     }
 }

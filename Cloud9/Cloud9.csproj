@@ -111,13 +111,12 @@
     <Compile Include="Game Data\Entity.cs" />
     <Compile Include="Game Data\Gui\Gui.cs" />
     <Compile Include="Game Data\Gui\GuiButton.cs" />
+    <Compile Include="Game Data\Gui\GuiMainMenu.cs" />
     <Compile Include="Game Data\Gui\GuiMenu.cs" />
     <Compile Include="Game Data\IGameData.cs" />
-    <Compile Include="Game Data\Npc\EntityClockworkRobot.cs" />
     <Compile Include="Game Data\Player\Player.cs" />
     <Compile Include="Game Data\Tile System\Layer.cs" />
     <Compile Include="Game Data\Tile System\Tile.cs" />
-    <Compile Include="Game Data\Tile System\TileTrampoline.cs" />
     <Compile Include="Game Data\World.cs" />
     <Compile Include="Helper Classes\Collection.cs" />
     <Compile Include="Helper Classes\Input.cs" />

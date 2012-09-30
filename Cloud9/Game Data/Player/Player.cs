@@ -56,7 +56,7 @@ namespace Cloud9
         public override void Update()
         {
             HandleInput();
-            //currentGui.Update();
+            currentGui.Update();
             base.Update();
         }
 
@@ -127,11 +127,6 @@ namespace Cloud9
                 Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / 16f;
                 if (World.Instance.GetLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)))
                     World.Instance.GetLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
-            }
-
-            if (Input.Instance.KeyNewPressed(Keys.E))
-            {
-                //OpenGui(new GuiInventory(this));
             }
 
             if (Input.Instance.KeyNewPressed(Keys.Space))
