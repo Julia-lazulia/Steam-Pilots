@@ -109,10 +109,6 @@
   <ItemGroup>
     <Compile Include="Animation\Animation.cs" />
     <Compile Include="Game Data\Entity.cs" />
-    <Compile Include="Game Data\Gui\Gui.cs" />
-    <Compile Include="Game Data\Gui\GuiButton.cs" />
-    <Compile Include="Game Data\Gui\GuiMainMenu.cs" />
-    <Compile Include="Game Data\Gui\GuiMenu.cs" />
     <Compile Include="Game Data\IGameData.cs" />
     <Compile Include="Game Data\Player\Player.cs" />
     <Compile Include="Game Data\Tile System\Layer.cs" />

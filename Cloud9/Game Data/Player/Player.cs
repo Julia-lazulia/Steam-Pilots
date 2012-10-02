@@ -15,7 +15,6 @@ namespace Cloud9
         private const int playerAccel = 4000;
         private AirShip airShip;
         private byte currentTile = 1;
-        public Gui currentGui;
         #endregion
 
         #region Initialization
@@ -47,7 +46,6 @@ namespace Cloud9
             tileHeight = 2;
             tileWidth = 1;
             spriteEffects = SpriteEffects.None;
-            currentGui = null;
         }
 
         /// <summary>
@@ -56,7 +54,6 @@ namespace Cloud9
         public override void Update()
         {
             HandleInput();
-            currentGui.Update();
             base.Update();
         }
 
@@ -145,11 +142,6 @@ namespace Cloud9
             {
                 World.Instance.DrawTiles = !World.Instance.DrawTiles;
             }
-        }
-
-        public void OpenGui(Gui gui)
-        {
-            currentGui = gui;
         }
         #endregion
     }

@@ -253,7 +253,7 @@ namespace Cloud9
         public virtual void Draw()
         {
             sprite.Draw(spriteBatch, position - World.Instance.CameraPosition, 1f, 0f, spriteEffects, Color.White);
-            spriteBatch.Draw(World.Content.Load<Texture2D>("bounding"), position - World.Instance.CameraPosition, boundingRect, Color.White);
+            spriteBatch.Draw(World.Content.Load<Texture2D>("bounding"), (position - World.Instance.CameraPosition) - new Vector2(boundingRect.Width / 2, boundingRect.Height / 2), boundingRect, Color.White);
         }
 
         /// <summary>

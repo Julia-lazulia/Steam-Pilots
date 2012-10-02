@@ -38,9 +38,10 @@ namespace Cloud9
         protected override void Initialize()
         {
             World.Initialize(this);
-            World.Instance.Player.OpenGui(new GuiMainMenu());
+
             Components.Add(World.Instance);
             Components.Add(Input.Instance);
+
             base.Initialize();
         }
 
