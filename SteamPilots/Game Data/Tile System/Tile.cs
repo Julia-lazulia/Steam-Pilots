@@ -7,9 +7,10 @@ using Microsoft.Xna.Framework;
 
 namespace SteamPilots
 {
-    public class Tile : IGameData
+    public class Tile : IGameData, IInventoryItem
     {
         #region Properties
+       
         public const int TileSize = 16;
         public bool Collides;
         public int Index;
@@ -19,12 +20,35 @@ namespace SteamPilots
         #endregion
 
         #region Static
+        protected static Texture2D terrainTex = null;
         public static Tile[] tiles = new Tile[4096];
         public static Tile Air = new Tile(0, 0).SetCollides(false).SetHasEdges(false);
         public static Tile Dirt = new Tile(1, 0);
         public static Tile Grass = new Tile(2, 65);
         public static Tile Planks = new Tile(3, 99);
-        
+
+        /// <summary>
+        /// Get tile from index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Tile from index</returns>
+        public static Tile GetTile(byte index)
+        {
+            return tiles[index];
+        }
+
+        /// <summary>
+        /// Get index from tile
+        /// </summary>
+        /// <param name="tile">tile</param>
+        /// <returns></returns>
+        public static byte GetByte(Tile tile)
+        {
+            return (byte)Array.IndexOf<Tile>(tiles, tile);
+        }
+        #endregion          
+
+        #region Methods
         /// <summary>
         /// Create a new tile
         /// </summary>
@@ -32,6 +56,10 @@ namespace SteamPilots
         /// <param name="tileIndex">Texture index</param>
         public Tile(int index, int tileIndex)
         {
+            if(terrainTex == null)
+            {
+                terrainTex = World.Content.Load<Texture2D>("terrain");
+            }
             if (tiles[index] != null)
                 throw new ArgumentException("Index " + index + "is already occupied by " + tiles[index] + " when adding " + this);
             else
@@ -44,6 +72,8 @@ namespace SteamPilots
                 Size = new Vector2(1, 1);
             }
         }
+
+
 
         /// <summary>
         /// Set block collides
@@ -79,25 +109,7 @@ namespace SteamPilots
             return this;
         }
 
-        /// <summary>
-        /// Get tile from index
-        /// </summary>
-        /// <param name="index">Index</param>
-        /// <returns>Tile from index</returns>
-        public static Tile GetTile(byte index)
-        {
-            return tiles[index];
-        }
-
-        /// <summary>
-        /// Get index from tile
-        /// </summary>
-        /// <param name="tile">tile</param>
-        /// <returns></returns>
-        public static byte GetByte(Tile tile)
-        {
-            return (byte)Array.IndexOf<Tile>(tiles, tile);
-        }
+      
 
         /// <summary>
         /// Get bounds from coordinates
@@ -109,9 +121,8 @@ namespace SteamPilots
         {
             return new Rectangle(x * TileSize, y * TileSize, (int)(TileSize * Size.X), (int)(TileSize * Size.Y));
         }
-        #endregion
 
-        #region Methods
+       
         /// <summary>
         /// Draw tile
         /// </summary>
@@ -124,7 +135,7 @@ namespace SteamPilots
             Rectangle source = GetSource();
             bounds.X -= (int)World.Instance.CameraPosition.X;
             bounds.Y -= (int)World.Instance.CameraPosition.Y;
-            World.Instance.SpriteBatch.Draw(GetTextureFile(), bounds, source, Color.White);
+            World.Instance.SpriteBatch.Draw(GetTextureFile(), bounds, source, Color.White, 0f, Vector2.Zero, SpriteEffects.None, layer.LayerDepth);
         }
 
         /// <summary>
@@ -155,7 +166,7 @@ namespace SteamPilots
         /// <returns></returns>
         public virtual Texture2D GetTextureFile()
         {
-            return World.Content.Load<Texture2D>("terrain");
+            return terrainTex;
         }
 
         /// <summary>
@@ -166,5 +177,42 @@ namespace SteamPilots
         {
         }
         #endregion
+
+        public int InvImageIndex
+        {
+            get
+            {
+                return TileIndex;
+            }
+            set
+            {
+                InvImageIndex = value;
+            }
+        }
+
+        public string ToolTip
+        {
+            get
+            {
+                return ToolTip;
+            }
+            set
+            {
+                ToolTip = value;
+            }
+        }
+
+        public InventoryType InventoryType
+        {
+            get
+            {
+                return InventoryType.INV_TOOL;
+            }
+            set
+            {
+                InventoryType = value;
+            }
+
+        }
     }
 }

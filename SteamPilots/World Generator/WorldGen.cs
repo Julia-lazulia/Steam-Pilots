@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace SteamPilots
 {
@@ -31,24 +32,20 @@ namespace SteamPilots
         /// Generate layers
         /// </summary>
         /// <returns>Generated layers</returns>
-        public static Layer[] Generate()
+        public static List<Layer> Generate()
         {
             rnd = new Random();
-            Layer[] layers = new Layer[5];
-            for (int i = 0; i < layers.Length; i++)
+            List<Layer> layers = new List<Layer>();
+           
+            for (int i = 0; i < 2; i++)
             {
-                layers[i] = new Layer();
-                layers[i].InitEntityLists();
-                if (i == 2)
-                {
-                    layers[i].InitTileData();
-                }
-                if (i != 0 && i != layers.Length - 1)
-                {
-                    layers[i].InitTileData();
-                }
+                ForegroundLayer l = new ForegroundLayer(0.1f + (i * 0.1f));
+                if (i == 0)
+                    l.Visible = true;
+                layers.Add(l);
             }
             Loop(layers);
+            layers.Add(new BackgroundLayer(0.15f));
             return layers;
         }
 
@@ -56,7 +53,7 @@ namespace SteamPilots
         /// Generate layers
         /// </summary>
         /// <param name="layers">Layers</param>
-        private static void Loop(Layer[] layers)
+        private static void Loop(List<Layer> layers)
         {
             if (islandPoints > 0)
             {
@@ -110,7 +107,7 @@ namespace SteamPilots
         /// </summary>
         /// <param name="layers">Layers</param>
         /// <param name="sizeX">Island width</param>
-        private static void GenerateIsland(Layer[] layers, int sizeX)
+        private static void GenerateIsland(List<Layer> layers, int sizeX)
         {
             int startX = rnd.Next(0, World.Width - sizeX);
             int endX = startX + sizeX;
@@ -126,7 +123,7 @@ namespace SteamPilots
                     {
                         break;
                     }
-                    for (int layer = 1; layer < 4; layer++)
+                    for (int layer = 0; layer < layers.Count; layer++)
                     {
                         if (y == YPosition)
                             layers[layer].SetTile(x, y, Tile.Grass);

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 
 namespace SteamPilots
 {
@@ -12,10 +8,30 @@ namespace SteamPilots
         #region Properties
         // Layer tiles
         byte[] tileData;
+        protected bool active;
+        protected bool visible;
+        protected float layerDepth;
 
-        // Collections with active and inactive entities
-        Collection<Entity> InActiveEntities;
-        Collection<Entity> ActiveEntities;
+        public bool Active
+        {
+            get { return active; }
+            set { active = value; }
+        }
+        
+        public bool Visible
+        {
+            get { return visible; }
+            set { visible = value; }
+        }
+
+        public float LayerDepth
+        {
+            get { return layerDepth; }
+            private set
+            {
+                layerDepth = value;
+            }
+        }
 
         // Width and Height
         int Width
@@ -25,26 +41,22 @@ namespace SteamPilots
         int Height
         {
             get { return World.Height; }
-        }
+        }        
         #endregion
 
-        #region Initialization
+        #region Initialisation
+        
         /// <summary>
-        /// Initialize layer
+        /// Constructor, initializes layer data
         /// </summary>
-        public void InitTileData()
+        public Layer(float layerDepth)
         {
+            this.active = true;
+            this.visible = false;
+            this.layerDepth = layerDepth;
             tileData = new byte[Width * Height];
         }
 
-        /// <summary>
-        /// Initialize entity list
-        /// </summary>
-        public void InitEntityLists()
-        {
-            InActiveEntities = new Collection<Entity>();
-            ActiveEntities = new Collection<Entity>();
-        }
         #endregion
 
         #region Methods
@@ -60,25 +72,16 @@ namespace SteamPilots
         /// <summary>
         /// Update the layer
         /// </summary>
-        public void Update()
+        public virtual void Update()
         {
-            foreach (Entity e in ActiveEntities)
-                e.Update();
-
-            ActiveEntities.Update();
-            InActiveEntities.Update();
+           
         }
 
         /// <summary>
         /// Draw the layer
         /// </summary>
-        public void Draw()
+        public virtual void Draw()
         {
-            Entity[] sortedEntities = ActiveEntities.ToArray();
-            Array.Sort<Entity>(sortedEntities);
-            foreach (Entity e in sortedEntities)
-                e.Draw();
-
             if (tileData != null)
             {
                 int left = (int)(World.Instance.CameraPosition.X / Tile.TileSize);
@@ -136,25 +139,6 @@ namespace SteamPilots
         }
 
         /// <summary>
-        /// Is it possible to place the tile at the given coordinates?
-        /// </summary>
-        /// <param name="x">X coordinate</param>
-        /// <param name="y">Y coordinate</param>
-        /// <param name="tile">tile to place</param>
-        /// <returns></returns>
-        public bool CanPlace(int x, int y, Tile tile)
-        {
-            Rectangle tileBounds = new Rectangle(x, y, (int)(x + tile.Size.X), (int)(y + tile.Size.Y));
-            Entity[] entities = GetEntities(true).ToArray();
-            for (int index = 0; index < entities.Length; index++)
-            {
-                Entity entity = entities[index];
-                if (tileBounds.Intersects(entity.BoundingRect)) return false;
-            }
-            return true;
-        }
-
-        /// <summary>
         /// Set the tiles at the given coordinates
         /// </summary>
         /// <param name="x">X coordinate</param>
@@ -162,23 +146,12 @@ namespace SteamPilots
         /// <param name="tile">Tile to place</param>
         public void SetTile(int x, int y, Tile tile)
         {
-            if(!IsValidTile(x, y))
+            if (!IsValidTile(x, y))
                 throw new IndexOutOfRangeException("Tile out of range in Tile.SetTile");
             tileData[y * Width + x] = Tile.GetByte(tile);
         }
-
-        /// <summary>
-        /// Get the entity collection
-        /// </summary>
-        /// <param name="active">active entities?</param>
-        /// <returns></returns>
-        public Collection<Entity> GetEntities(bool active)
-        {
-            if (active)
-                return ActiveEntities;
-            else
-                return InActiveEntities;
-        }
         #endregion
+
+
     }
 }

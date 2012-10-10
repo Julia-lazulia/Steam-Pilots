@@ -34,7 +34,7 @@ namespace SteamPilots
             airShip.Spawn();
             airShip.ChangeActivity();
             stepValue = 175f;
-            layer = 2;
+            layer = 0;
             position = new Vector2(5000f, 500f);
             velocity = new Vector2(0f, 100f);
             drawPriority = 0f;
@@ -115,15 +115,15 @@ namespace SteamPilots
             if (Input.Instance.MouseLeftButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / 16f;
-                if (World.Instance.GetLayer(layer).IsValidTile((int)tile.X, (int)tile.Y))
-                    World.Instance.GetLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Air);
+                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y))
+                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Air);
             }
 
             if (Input.Instance.MouseRightButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / 16f;
-                if (World.Instance.GetLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)))
-                    World.Instance.GetLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
+                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)))
+                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
             }
 
             if (Input.Instance.KeyNewPressed(Keys.Space))

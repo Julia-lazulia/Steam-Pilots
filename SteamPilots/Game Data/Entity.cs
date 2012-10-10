@@ -79,7 +79,7 @@ namespace SteamPilots
         /// </summary>
         public virtual void Spawn()
         {
-            World.Instance.GetLayer(layer).GetEntities(active).Add(this);
+            World.Instance.GetForegroundLayer(layer).GetEntities(active).Add(this);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace SteamPilots
             sprite.Update();
             if (collidesWithOtherEntities && mount == null)
             {
-                Entity[] entities = World.Instance.GetLayer(layer).GetEntities(active).ToArray();
+                Entity[] entities = World.Instance.GetForegroundLayer(layer).GetEntities(active).ToArray();
                 for (int index = 0; index < entities.Length; index++)
                 {
                     Entity entity = entities[index];
@@ -137,7 +137,7 @@ namespace SteamPilots
                 spriteEffects = mount.spriteEffects;
                 drawPriority = -1f;
             }
-            if (collidesWithTiles && World.Instance.GetLayer(layer).HasTiles() && mount == null)
+            if (collidesWithTiles && World.Instance.GetForegroundLayer(layer).HasTiles() && mount == null)
                 DoTileCollision();
             if (velocity.Y < 2000f && !isOnGround)
                 velocity.Y = velocity.Y + gravityEffect * World.ElapsedSeconds;
@@ -167,14 +167,14 @@ namespace SteamPilots
             {
                 for (int cY = y; cY < y + tileHeight; cY++)
                 {
-                    if (World.Instance.GetLayer(layer).IsValidTile(cX, cY))
+                    if (World.Instance.GetForegroundLayer(layer).IsValidTile(cX, cY))
                     {
-                        if (World.Instance.GetLayer(layer).GetTile(cX, cY).Collides)
+                        if (World.Instance.GetForegroundLayer(layer).GetTile(cX, cY).Collides)
                         {
-                            Rectangle bounds = World.Instance.GetLayer(layer).GetTile(cX, cY).GetBounds(cX, cY);
+                            Rectangle bounds = World.Instance.GetForegroundLayer(layer).GetTile(cX, cY).GetBounds(cX, cY);
                             if (boundingRect.Intersects(bounds))
                             {
-                                World.Instance.GetLayer(layer).GetTile(cX, cY).OnCollide(this);
+                                World.Instance.GetForegroundLayer(layer).GetTile(cX, cY).OnCollide(this);
                                 if (bounds.Center.X > boundingRect.Center.X)
                                 {
                                     if (velocity.X > 0f)
@@ -207,14 +207,14 @@ namespace SteamPilots
             {
                 for (int cX = x; cX < x + tileWidth; cX++)
                 {
-                    if (World.Instance.GetLayer(this.layer).IsValidTile(cX, cY))
+                    if (World.Instance.GetForegroundLayer(this.layer).IsValidTile(cX, cY))
                     {
-                        if (World.Instance.GetLayer(this.layer).GetTile(cX, cY).Collides)
+                        if (World.Instance.GetForegroundLayer(this.layer).GetTile(cX, cY).Collides)
                         {
-                            Rectangle bounds = World.Instance.GetLayer(layer).GetTile(cX, cY).GetBounds(cX, cY);
+                            Rectangle bounds = World.Instance.GetForegroundLayer(layer).GetTile(cX, cY).GetBounds(cX, cY);
                             if (this.boundingRect.Intersects(bounds))
                             {
-                                World.Instance.GetLayer(layer).GetTile(cX, cY).OnCollide(this);
+                                World.Instance.GetForegroundLayer(layer).GetTile(cX, cY).OnCollide(this);
                                 if (bounds.Center.Y > boundingRect.Center.Y)
                                 {
                                     if (velocity.Y > 0f)
@@ -250,9 +250,9 @@ namespace SteamPilots
         /// <summary>
         /// Draws the entity
         /// </summary>
-        public virtual void Draw()
+        public virtual void Draw(float layerDepth)
         {
-            sprite.Draw(spriteBatch, position - World.Instance.CameraPosition, 1f, 0f, spriteEffects, Color.White);
+            sprite.Draw(spriteBatch, position - World.Instance.CameraPosition, 1f, 0f, spriteEffects, Color.White, layerDepth);
         }
 
         /// <summary>
@@ -261,9 +261,9 @@ namespace SteamPilots
         /// <param name="targetLayer">Target layer</param>
         public void ChangeLayers(int targetLayer)
         {
-            World.Instance.GetLayer(layer).GetEntities(active).Remove(this);
+            World.Instance.GetForegroundLayer(layer).GetEntities(active).Remove(this);
             layer = targetLayer;
-            World.Instance.GetLayer(layer).GetEntities(active).Add(this);
+            World.Instance.GetForegroundLayer(layer).GetEntities(active).Add(this);
         }
 
         /// <summary>
@@ -271,9 +271,9 @@ namespace SteamPilots
         /// </summary>
         public void ChangeActivity()
         {
-            World.Instance.GetLayer(layer).GetEntities(active).Remove(this);
+            World.Instance.GetForegroundLayer(layer).GetEntities(active).Remove(this);
             active = !active;
-            World.Instance.GetLayer(layer).GetEntities(active).Add(this);
+            World.Instance.GetForegroundLayer(layer).GetEntities(active).Add(this);
         }
 
         /// <summary>

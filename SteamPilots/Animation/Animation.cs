@@ -187,7 +187,7 @@ namespace SteamPilots
         /// <param name="rotation">Sprite rotation</param>
         /// <param name="spriteEffects">SpriteEffects</param>
         /// <param name="color">Drawing Color</param>
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, float scale, float rotation, SpriteEffects spriteEffects, Color color)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, float scale, float rotation, SpriteEffects spriteEffects, Color color, float layerDepth)
         {
             spriteBatch.Draw(animationPlayer.GetTexture(),
                 position,
@@ -197,7 +197,7 @@ namespace SteamPilots
                 animationPlayer.GetOrigin(),
                 scale,
                 spriteEffects,
-                0);
+                layerDepth);
         }
         #endregion
     }

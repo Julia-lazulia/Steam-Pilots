@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace SteamPilots
 {
@@ -23,7 +24,7 @@ namespace SteamPilots
         public bool DrawTiles = true;
         int resolutionNum;
         int displayModes;
-        Layer[] layers;
+        List<Layer> layers;
         GameTime gameTime;
         Vector2 cameraPosition;
         Player player;
@@ -103,9 +104,14 @@ namespace SteamPilots
             Matrix matrix = Matrix.Identity;
             if (Main.ScaleToScreen)
                 matrix = Matrix.CreateScale(ScreenScaling.X, ScreenScaling.Y, 1f);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, matrix);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, matrix);
             foreach (Layer l in layers)
-                l.Draw();
+            {
+                if (l.Active && l.Visible)
+                {
+                    l.Draw();
+                }
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -115,9 +121,13 @@ namespace SteamPilots
         /// </summary>
         /// <param name="layer">Layer index</param>
         /// <returns>Layer</returns> 
-        public Layer GetLayer(int layer)
+        public ForegroundLayer GetForegroundLayer(int layer)
         {
-            return layers[layer];
+            if(layer < layers.Count && layers[layer] is ForegroundLayer)
+            {
+                return (ForegroundLayer)layers[layer];
+            }
+            return null;
         }
         #endregion
 

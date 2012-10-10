@@ -70,8 +70,7 @@ namespace SteamPilots
 
             World.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null);
 
-            // Background
-            World.Instance.SpriteBatch.Draw(Content.Load<Texture2D>("background_1"), new Rectangle(0, 0, (int)ScreenSize.X, (int)ScreenSize.Y), Color.White);
+            
 
             // Debug info
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Fps : " + Math.Round((double)(1f / (float)gameTime.ElapsedGameTime.TotalSeconds)), Vector2.Zero, Color.White);
@@ -82,9 +81,9 @@ namespace SteamPilots
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), string.Concat(new object[]
 			{
 				"Resolution : ",
-				(int)World.Resolution.X,
+				(int)ScreenSize.X,
 				"x",
-				(int)World.Resolution.Y
+				(int)ScreenSize.Y
 			}), new Vector2(0f, 125f), Color.White);
 
             World.Instance.SpriteBatch.End();

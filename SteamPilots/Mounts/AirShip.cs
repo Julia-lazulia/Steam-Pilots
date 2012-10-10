@@ -36,6 +36,7 @@ namespace SteamPilots
             gravityEffect = 10f;
             active = true;
             radius = 42f;
+            layer = 0;
             tileHeight = 5;
             tileWidth = 7;
             spriteEffects = SpriteEffects.None;
