@@ -10,13 +10,15 @@ namespace SteamPilots
     public class Tile : IGameData, IInventoryItem
     {
         #region Properties
-       
         public const int TileSize = 16;
         public bool Collides;
         public int Index;
         public int TileIndex;
         public bool HasEdges;
+        public InventoryType inventoryType;
+        public string toolTip;
         public Vector2 Size;
+        public String tileName;
         #endregion
 
         #region Static
@@ -25,7 +27,13 @@ namespace SteamPilots
         public static Tile Air = new Tile(0, 0).SetCollides(false).SetHasEdges(false);
         public static Tile Dirt = new Tile(1, 0);
         public static Tile Grass = new Tile(2, 65);
-        public static Tile Planks = new Tile(3, 99);
+        public static Tile Planks = new Tile(3, 99).SetType(InventoryType.INV_TILE);
+        public static Tile test = new Tile(4, 99);
+        public static Tile test2 = new Tile(5, 99);
+        public static Tile test3 = new Tile(6, 99);
+        public static Tile test4 = new Tile(7, 99);
+        public static Tile test5 = new Tile(8, 99);
+        public static Tile test6 = new Tile(9, 99);
 
         /// <summary>
         /// Get tile from index
@@ -109,7 +117,22 @@ namespace SteamPilots
             return this;
         }
 
-      
+        /// <summary>
+        /// Sets the item type
+        /// </summary>
+        /// <param name="type">Inventory type</param>
+        /// <returns></returns>
+        public Tile SetType(InventoryType type)
+        {
+            InventoryType = type;
+            return this;
+        }
+
+        public Tile SetTileName(string tileName)
+        {
+            this.tileName = tileName;
+            return this;
+        }
 
         /// <summary>
         /// Get bounds from coordinates
@@ -186,7 +209,7 @@ namespace SteamPilots
             }
             set
             {
-                InvImageIndex = value;
+                TileIndex = value;
             }
         }
 
@@ -194,11 +217,11 @@ namespace SteamPilots
         {
             get
             {
-                return ToolTip;
+                return toolTip;
             }
             set
             {
-                ToolTip = value;
+                toolTip = value;
             }
         }
 
@@ -206,11 +229,11 @@ namespace SteamPilots
         {
             get
             {
-                return InventoryType.INV_TOOL;
+                return inventoryType;
             }
             set
             {
-                InventoryType = value;
+                inventoryType = value;
             }
 
         }

@@ -11,10 +11,11 @@ namespace SteamPilots
     public class Player : Entity
     {
         #region Properties
-        private const int playerMaxSpeed = 180;
-        private const int playerAccel = 4000;
+        private const int playerMaxSpeed = 100;
+        private const int playerAccel = 2000;
         private AirShip airShip;
-        private byte currentTile = 1;
+        public byte currentTile = 1;
+        public Inventory inventory = new Inventory();
         #endregion
 
         #region Initialization
@@ -98,7 +99,7 @@ namespace SteamPilots
                     if (layer < 3)
                         ChangeLayers(layer + 1);
                 if (Input.Instance.KeyDown(Keys.W) && isOnGround)
-                    velocity.Y = velocity.Y - 400f;
+                    velocity.Y = velocity.Y - 250f;
                 if (Input.Instance.KeyDown(Keys.W) && velocity.Y < 0f)
                     velocity.Y = velocity.Y - gravityEffect / 2f * World.ElapsedSeconds;
             }
@@ -111,19 +112,34 @@ namespace SteamPilots
                 currentTile = 3;
             if (Input.Instance.KeyDown(Keys.D4))
                 currentTile = 4;
+            if (Input.Instance.KeyDown(Keys.D5))
+                currentTile = 5;
+            if (Input.Instance.KeyDown(Keys.D6))
+                currentTile = 6;
+            if (Input.Instance.KeyDown(Keys.D7))
+                currentTile = 7;
+            if (Input.Instance.KeyDown(Keys.D8))
+                currentTile = 8;
+            if (Input.Instance.KeyDown(Keys.D9))
+                currentTile = 9;
             
             if (Input.Instance.MouseLeftButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / 16f;
                 if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y))
+                {
+                    inventory.Add(World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y), 1);
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Air);
+                }
             }
 
             if (Input.Instance.MouseRightButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / 16f;
-                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)))
+                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)) && inventory.Remove(Tile.GetTile(currentTile), 1))
+                {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
+                }
             }
 
             if (Input.Instance.KeyNewPressed(Keys.Space))

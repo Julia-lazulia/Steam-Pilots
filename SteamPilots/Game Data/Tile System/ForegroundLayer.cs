@@ -33,6 +33,7 @@ namespace SteamPilots
         {
             InActiveEntities = new Collection<Entity>();
             ActiveEntities = new Collection<Entity>();
+            tileData = new byte[Width * Height];
         }     
         #endregion
 

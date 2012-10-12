@@ -112,6 +112,9 @@ namespace SteamPilots
                     l.Draw();
                 }
             }
+
+            spriteBatch.Draw(Tile.GetTile(player.currentTile).GetTextureFile(), new Rectangle((int)(100 + cameraPosition.X), (int)(100 + cameraPosition.Y), Tile.TileSize, Tile.TileSize), Tile.GetTile(player.currentTile).GetSource(), Color.White);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
