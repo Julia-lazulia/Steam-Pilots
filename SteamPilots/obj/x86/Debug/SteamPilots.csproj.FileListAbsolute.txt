@@ -1,31 +1,6 @@
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\obj\x86\Debug\Cloud9.exe
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\SpriteFont1.xnb
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\Player\playerIdle.xnb
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\Player\playerRun.xnb
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\terrain.xnb
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\background_1.xnb
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\Ships\full.xnb
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Cloud9.exe
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Cloud9.pdb
-C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\obj\x86\Debug\Cloud9.pdb
-<<<<<<< HEAD
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\SteamPilots.exe
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\SteamPilots.pdb
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.exe
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.pdb
-=======
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\bin\x86\Debug\Cloud9.exe
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\bin\x86\Debug\Cloud9.pdb
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\obj\x86\Debug\Cloud9.exe
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\obj\x86\Debug\Cloud9.pdb
->>>>>>> Had to commit
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\bin\x86\Debug\SteamPilots.exe
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\bin\x86\Debug\SteamPilots.pdb
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\obj\x86\Debug\SteamPilots.exe
-C:\Users\Image 17\Desktop\SteamPilots\SteamPilots\SteamPilots\obj\x86\Debug\SteamPilots.pdb
