@@ -27,7 +27,7 @@ namespace SteamPilots
         List<Layer> layers;
         GameTime gameTime;
         Vector2 cameraPosition;
-        Player player;
+        EntityPlayer player;
         SpriteBatch spriteBatch;
         public static Vector2[] Resolutions = new Vector2[99];
         #endregion
@@ -54,7 +54,7 @@ namespace SteamPilots
         private void InitializePlayer()
         {
             layers = WorldGen.Generate();
-            player = new Player();
+            player = new EntityPlayer();
             player.Spawn();
             cameraPosition = player.Position - Resolution / 2f;
         }
@@ -145,7 +145,7 @@ namespace SteamPilots
             get { return cameraPosition; }
         }
 
-        public Player Player
+        public EntityPlayer Player
         {
             get { return player; }
         }
@@ -178,6 +178,11 @@ namespace SteamPilots
         public static ContentManager Content
         {
             get { return instance.Game.Content; }
+        }
+
+        public static GameTime GameTime
+        {
+            get { return instance.gameTime; }
         }
         #endregion
     }

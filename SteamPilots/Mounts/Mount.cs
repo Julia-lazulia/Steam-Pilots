@@ -48,7 +48,7 @@ namespace SteamPilots
         /// </summary>
         public override void Update()
         {
-            if (rider is Player)
+            if (rider is EntityPlayer)
                 UpdateInput();
             base.Update();
             if (rider != null)

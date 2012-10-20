@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace SteamPilots
 {
-    class GuiManager
+    public class GuiManager
     {
         private List<GuiElement> Elements;
 
@@ -49,6 +49,17 @@ namespace SteamPilots
                 Elements[i].Update(gt);                
             }
 
+        }
+
+        public void Draw()
+        {
+            for (var i = 0; i < Elements.Count; i++)
+            {
+                if (Elements[i].visible)
+                {
+                    Elements[i].Draw();
+                }
+            }
         }
     }
 }

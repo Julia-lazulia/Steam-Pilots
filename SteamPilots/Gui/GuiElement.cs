@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework;
 
 namespace SteamPilots
 {
-    class GuiElement
+    public class GuiElement
     {
-        private Rectangle boundingBox;
-        private Vector2 position;
-        private Texture2D tex;
+        protected Rectangle boundingBox;
+        protected Vector2 position;
+        protected Texture2D tex;
         public Boolean visible;
 
         public event EventHandler LeftClick;
