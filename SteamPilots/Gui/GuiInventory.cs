@@ -14,7 +14,7 @@ namespace SteamPilots
         public GuiInventory()
             : base()
         {
-            AddGuiElement(button = new GuiButton(0, (int)(Main.ScreenSize.X / 2), (int)(Main.ScreenSize.Y / 2), 20, 20);
+            AddGuiElement(button = new GuiButton(0, (int)(Main.ScreenSize.X / 2), (int)(Main.ScreenSize.Y / 2), 20, 20));
         }
     }
 }

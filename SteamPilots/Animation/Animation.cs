@@ -100,7 +100,7 @@ namespace SteamPilots
                 if (frameCount >= playingAnimation.FrameCount)
                 {
                     if (playingAnimation.Looping)
-                        frameCount -= 2;
+                        frameCount = 0;
                     else
                         frameCount--; // Stays on the last frame
                 }
