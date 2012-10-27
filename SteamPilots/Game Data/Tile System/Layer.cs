@@ -151,7 +151,5 @@ namespace SteamPilots
             tileData[y * Width + x] = Tile.GetByte(tile);
         }
         #endregion
-
-
     }
 }

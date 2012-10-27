@@ -16,7 +16,6 @@ namespace SteamPilots
         private AirShip airShip;
         public byte currentTile = 1;
         public Inventory inventory = new Inventory();
-        public GuiManager currentGui;
         #endregion
 
         #region Initialization
@@ -48,7 +47,6 @@ namespace SteamPilots
             tileHeight = 2;
             tileWidth = 1;
             spriteEffects = SpriteEffects.None;
-            currentGui = null;
         }
 
         /// <summary>
@@ -57,7 +55,6 @@ namespace SteamPilots
         public override void Update()
         {
             HandleInput();
-            UpdateGui();
             base.Update();
         }
 
@@ -157,24 +154,9 @@ namespace SteamPilots
                     Dismount();
             }
 
-            if (Input.Instance.KeyNewPressed(Keys.I))
-            {
-                if (currentGui == null) currentGui = new GuiInventory();
-                else if (currentGui is GuiInventory) currentGui = null;
-            }
-
             if (Input.Instance.KeyNewPressed(Keys.Enter))
             {
                 World.Instance.DrawTiles = !World.Instance.DrawTiles;
-            }
-        }
-
-        public void UpdateGui()
-        {
-            if (currentGui != null)
-            {
-                currentGui.Update(World.GameTime);
-                currentGui.Draw();
             }
         }
         #endregion

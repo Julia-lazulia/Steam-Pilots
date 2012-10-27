@@ -67,10 +67,9 @@ namespace SteamPilots
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            base.Draw(gameTime);
 
-            World.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null);
-
-            
+            World.Instance.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, null, null);
 
             // Debug info
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Fps : " + Math.Round((double)(1f / (float)gameTime.ElapsedGameTime.TotalSeconds)), Vector2.Zero, Color.White);
@@ -87,8 +86,6 @@ namespace SteamPilots
 			}), new Vector2(0f, 125f), Color.White);
 
             World.Instance.SpriteBatch.End();
-
-            base.Draw(gameTime);
         }
     }
 }
