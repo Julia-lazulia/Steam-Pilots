@@ -136,7 +136,7 @@ namespace SteamPilots
             
             if (Input.Instance.MouseLeftButtonNewPressed())
             {
-                Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / 16f;
+                Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
                 if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && InRange(tile))
                 {
                     inventory.Add(World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y), 1);
@@ -146,7 +146,7 @@ namespace SteamPilots
 
             if (Input.Instance.MouseRightButtonNewPressed())
             {
-                Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / 16f;
+                Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
                 if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)) && InRange(tile) && inventory.Remove(Tile.GetTile(currentTile), 1))
                 {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
@@ -173,8 +173,8 @@ namespace SteamPilots
 
         public Boolean InRange(Vector2 tile)
         {
-            tile = new Vector2((int)tile.X * 16, (int)tile.Y * 16);
-            return Vector2.Distance(tile, new Vector2(BoundingRect.Center.X, BoundingRect.Center.Y)) < (7 * 16);
+            tile = new Vector2((int)tile.X * Tile.TileSize, (int)tile.Y * Tile.TileSize);
+            return Vector2.Distance(tile, new Vector2(boundingRect.Center.X, boundingRect.Bottom) /*Middle of the feets*/) < (3 * Tile.TileSize); // Needs to be fixed :S
         }
         #endregion
     }
