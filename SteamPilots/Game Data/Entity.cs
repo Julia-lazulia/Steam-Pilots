@@ -70,6 +70,7 @@ namespace SteamPilots
         #region Initialization
         public Entity()
         {
+            layer = 1;
         }
         #endregion
 
@@ -139,8 +140,11 @@ namespace SteamPilots
             }
             if (collidesWithTiles && World.Instance.GetForegroundLayer(layer).HasTiles() && mount == null)
                 DoTileCollision();
+
+         
             if (velocity.Y < 2000f && !isOnGround)
                 velocity.Y = velocity.Y + gravityEffect * World.ElapsedSeconds;
+             
         }
 
         /// <summary>
@@ -180,7 +184,10 @@ namespace SteamPilots
                                     if (velocity.X > 0f)
                                     {
                                         if (cY == y + tileHeight - 1 && canStep && (isOnGround || !requiresGroundToStep))
-                                            velocity.Y = -stepValue;
+                                        {
+                                            //velocity.Y = -stepValue;
+                                            velocity.Y = velocity.X;
+                                        }
                                         position.X = (float)(bounds.Left - boundingRect.Width / 2);
                                         velocity.X = 0f;
                                         canStep = false;
@@ -191,7 +198,10 @@ namespace SteamPilots
                                     if (velocity.X < 0f)
                                     {
                                         if (cY == y + tileHeight - 1 && canStep && (isOnGround || !requiresGroundToStep))
-                                            velocity.Y = -stepValue;
+                                        {
+                                            //velocity.Y = -stepValue;
+                                            velocity.Y = -velocity.X;
+                                        }
                                         position.X = (float)(bounds.Right + boundingRect.Width / 2);
                                         velocity.X = 0f;
                                         canStep = false;
@@ -229,7 +239,7 @@ namespace SteamPilots
                                     if (velocity.Y < 0f)
                                     {
                                         position.Y = (float)(bounds.Bottom + boundingRect.Height / 2);
-                                        velocity.Y = 1f;
+                                        velocity.Y = 0f;
                                     }
                                 }
                             }

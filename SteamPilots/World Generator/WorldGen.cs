@@ -39,13 +39,12 @@ namespace SteamPilots
            
             for (int i = 0; i < 2; i++)
             {
-                ForegroundLayer l = new ForegroundLayer(0.1f + (i * 0.1f));
-                if (i == 0)
-                    l.Visible = true;
+                ForegroundLayer l = new ForegroundLayer(0.25f + (i * 0.05f));
+                l.Visible = true;
                 layers.Add(l);
             }
             Loop(layers);
-            layers.Add(new BackgroundLayer(0.15f));
+            layers.Add(new BackgroundLayer(0.55f));
             return layers;
         }
 
@@ -123,7 +122,7 @@ namespace SteamPilots
                     {
                         break;
                     }
-                    for (int layer = 0; layer < layers.Count; layer++)
+                    for (int layer = 1; layer < layers.Count; layer++)
                     {
                         if (y == YPosition)
                             layers[layer].SetTile(x, y, Tile.Grass);

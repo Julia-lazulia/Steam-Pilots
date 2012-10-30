@@ -77,6 +77,8 @@ namespace SteamPilots
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Position Y : " + (int)World.Instance.Player.Position.Y, new Vector2(0f, 50f), Color.White);
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Velocity X : " + (int)World.Instance.Player.Velocity.X, new Vector2(0f, 75f), Color.White);
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Velocity Y : " + (int)World.Instance.Player.Velocity.Y, new Vector2(0f, 100f), Color.White);
+            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Mnt. Velocity X : " + (int)World.Instance.Player.airShip.Velocity.X, new Vector2(0f, 150f), Color.White);
+            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Mnt. Velocity Y : " + (int)World.Instance.Player.airShip.Velocity.Y, new Vector2(0f, 175f), Color.White);
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), string.Concat(new object[]
 			{
 				"Resolution : ",

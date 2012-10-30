@@ -14,7 +14,7 @@ namespace SteamPilots
         int maxSpeedX = 400;
         int maxSpeedY = 400;
         int accelX = 800;
-        int accelY = 1000;
+        int accelY = 800;
         #endregion
 
         #region Initialization
@@ -70,22 +70,20 @@ namespace SteamPilots
                     }
                 }
             }
-            else
+            else if (Input.Instance.KeyDown(Keys.D))
             {
-                if (Input.Instance.KeyDown(Keys.D))
+                spriteEffects = SpriteEffects.None;
+                if (velocity.X < maxSpeedX)
                 {
-                    spriteEffects = SpriteEffects.None;
-                    if (velocity.X < maxSpeedX)
+                    velocity.X = velocity.X + accelX * World.ElapsedSeconds;
+                    if (velocity.X > maxSpeedX)
                     {
-                        velocity.X = velocity.X + accelX * World.ElapsedSeconds;
-                        if (velocity.X > maxSpeedX)
-                        {
-                            velocity.X = maxSpeedX;
-                        }
+                        velocity.X = maxSpeedX;
                     }
                 }
             }
-            if (Input.Instance.KeyDown(Keys.W))
+
+            else if (Input.Instance.KeyDown(Keys.W))
             {
                 if (velocity.Y > -maxSpeedY)
                 {
@@ -96,17 +94,14 @@ namespace SteamPilots
                     }
                 }
             }
-            else
+            else if (Input.Instance.KeyDown(Keys.S))
             {
-                if (Input.Instance.KeyDown(Keys.S))
+                if (velocity.Y < maxSpeedY)
                 {
-                    if (velocity.Y < maxSpeedY)
+                    velocity.Y = velocity.Y + accelY * World.ElapsedSeconds;
+                    if (velocity.Y > maxSpeedY)
                     {
-                        velocity.Y = velocity.Y + accelY * World.ElapsedSeconds;
-                        if (velocity.Y > maxSpeedY)
-                        {
-                            velocity.Y = maxSpeedY;
-                        }
+                        velocity.Y = maxSpeedY;
                     }
                 }
             }

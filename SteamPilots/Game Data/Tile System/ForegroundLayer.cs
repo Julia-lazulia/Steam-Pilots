@@ -10,8 +10,6 @@ namespace SteamPilots
     public class ForegroundLayer : Layer
     {
         #region Properties
-        // Layer tiles
-        byte[] tileData;
 
         // Collections with active and inactive entities
         Collection<Entity> InActiveEntities;
@@ -34,6 +32,7 @@ namespace SteamPilots
             InActiveEntities = new Collection<Entity>();
             ActiveEntities = new Collection<Entity>();
             tileData = new byte[Width * Height];
+            this.active = true;
         }     
         #endregion
 

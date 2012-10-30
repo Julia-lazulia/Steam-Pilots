@@ -13,7 +13,7 @@ namespace SteamPilots
         #region Properties
         private const int playerMaxSpeed = 100;
         private const int playerAccel = 2000;
-        private AirShip airShip;
+        public AirShip airShip;
         public byte currentTile = 1;
         public Inventory inventory = new Inventory();
         #endregion
@@ -35,7 +35,7 @@ namespace SteamPilots
             airShip.Spawn();
             airShip.ChangeActivity();
             stepValue = 175f;
-            layer = 0;
+            layer = 1;
             position = new Vector2(5000f, 500f);
             velocity = new Vector2(0f, 100f);
             drawPriority = 0f;

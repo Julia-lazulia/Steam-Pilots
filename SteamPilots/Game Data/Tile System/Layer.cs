@@ -7,7 +7,7 @@ namespace SteamPilots
     {
         #region Properties
         // Layer tiles
-        byte[] tileData;
+        protected byte[] tileData;
         protected bool active;
         protected bool visible;
         protected float layerDepth;
