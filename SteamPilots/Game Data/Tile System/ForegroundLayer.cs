@@ -73,13 +73,14 @@ namespace SteamPilots
         {
             if (tile != null)
             {
-                Rectangle tileBounds = new Rectangle(x, y, (int)(x + tile.Size.X), (int)(y + tile.Size.Y));
+                Rectangle tileBounds = new Rectangle(x * 16, y * 16, (int)(tile.Size.X * Tile.TileSize), (int)(tile.Size.Y * Tile.TileSize));
                 Entity[] entities = GetEntities(true).ToArray();
                 for (int index = 0; index < entities.Length; index++)
                 {
                     Entity entity = entities[index];
                     if (tileBounds.Intersects(entity.BoundingRect)) return false;
                 }
+                if (TileExists(x, y)) return false;
                 return true;
             }
             return false;

@@ -18,3 +18,17 @@ C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\ResolveA
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.exe
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.pdb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\playerIdle.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\playerRun.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\terrain.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\background_1.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Ships\full.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Env\cld_small.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Env\cld_small.png
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\SteamPilots.exe
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\SteamPilots.pdb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.exe
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.pdb

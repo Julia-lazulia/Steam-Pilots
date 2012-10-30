@@ -1,2 +1,3 @@
 C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9Content\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilotsContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilotsContent\obj\x86\Debug\ResolveAssemblyReference.cache

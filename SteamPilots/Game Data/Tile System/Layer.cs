@@ -150,6 +150,11 @@ namespace SteamPilots
                 throw new IndexOutOfRangeException("Tile out of range in Tile.SetTile");
             tileData[y * Width + x] = Tile.GetByte(tile);
         }
+
+        public Boolean TileExists(int x, int y)
+        {
+            return tileData[y * Width + x] != 0;
+        }
         #endregion
     }
 }
