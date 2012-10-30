@@ -173,8 +173,8 @@ namespace SteamPilots
 
         public Boolean InRange(Vector2 tile)
         {
-            tile = new Vector2((int)tile.X * Tile.TileSize, (int)tile.Y * Tile.TileSize);
-            return Vector2.Distance(tile, new Vector2(boundingRect.Center.X, boundingRect.Bottom) /*Middle of the feets*/) < (3 * Tile.TileSize); // Needs to be fixed :S
+            tile = new Vector2(tile.X * Tile.TileSize, tile.Y * Tile.TileSize);
+            return new Vector2(tile.X - position.X, tile.Y - position.Y).Length() < 3 * Tile.TileSize;
         }
         #endregion
     }
