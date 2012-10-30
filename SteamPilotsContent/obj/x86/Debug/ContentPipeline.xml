@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-09-26T22:15:56+02:00</Time>
+      <Output>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-10-07T20:09:40.1417867+02:00</Time>
     </Item>
     <Item>
       <Source>Player\playerIdle.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\Player\playerIdle.xnb</Output>
-      <Time>2012-09-26T21:45:47+02:00</Time>
+      <Output>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\playerIdle.xnb</Output>
+      <Time>2012-10-07T20:09:40.1377864+02:00</Time>
     </Item>
     <Item>
       <Source>Player\playerRun.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\Player\playerRun.xnb</Output>
-      <Time>2012-09-26T21:45:47+02:00</Time>
+      <Output>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\playerRun.xnb</Output>
+      <Time>2012-10-07T20:09:40.1387865+02:00</Time>
     </Item>
     <Item>
       <Source>terrain.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\terrain.xnb</Output>
-      <Time>2012-09-26T21:45:59+02:00</Time>
+      <Output>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\terrain.xnb</Output>
+      <Time>2012-10-07T20:09:40.1587876+02:00</Time>
     </Item>
     <Item>
       <Source>background_1.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\background_1.xnb</Output>
-      <Time>2012-09-26T21:46:57+02:00</Time>
+      <Output>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\background_1.xnb</Output>
+      <Time>2012-10-07T20:09:40.1597877+02:00</Time>
     </Item>
     <Item>
       <Source>Ships\full.png</Source>
@@ -52,8 +52,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\Ships\full.xnb</Output>
-      <Time>2012-09-26T21:59:16+02:00</Time>
+      <Output>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Ships\full.xnb</Output>
+      <Time>2012-10-07T20:09:40.1407866+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Env\cld_small.png</Source>
+      <Name>Env\cld_small</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Env\cld_small.xnb</Output>
+      <Time>2012-07-18T04:00:36+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -61,39 +70,39 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Image 17\Dropbox\Steam Pilots\Game\Source\Steam Pilots\Cloud9\Cloud9\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilotsContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilotsContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+02:00</Value>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T13:41:18+02:00</Value>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+02:00</Value>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+02:00</Value>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+02:00</Value>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T13:41:18+02:00</Value>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-12-18T10:20:44.0807745+01:00</Value>
+        <Value>2011-05-12T19:43:30.7424459+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

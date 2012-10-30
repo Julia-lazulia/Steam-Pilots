@@ -73,12 +73,11 @@ namespace SteamPilots
 
             // Debug info
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Fps : " + Math.Round((double)(1f / (float)gameTime.ElapsedGameTime.TotalSeconds)), Vector2.Zero, Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Position X : " + (int)World.Instance.Player.Position.X, new Vector2(0f, 25f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Position Y : " + (int)World.Instance.Player.Position.Y, new Vector2(0f, 50f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Velocity X : " + (int)World.Instance.Player.Velocity.X, new Vector2(0f, 75f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Velocity Y : " + (int)World.Instance.Player.Velocity.Y, new Vector2(0f, 100f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Mnt. Velocity X : " + (int)World.Instance.Player.airShip.Velocity.X, new Vector2(0f, 150f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Mnt. Velocity Y : " + (int)World.Instance.Player.airShip.Velocity.Y, new Vector2(0f, 175f), Color.White);
+            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Position: " + World.Instance.Player.Position.ToString(), new Vector2(0f, 25f), Color.White);
+            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Velocity: " + World.Instance.Player.Velocity.ToString(), new Vector2(0f, 50f), Color.White);
+            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Mnt. Velocity: " + World.Instance.Player.airShip.Velocity.ToString(), new Vector2(0f, 75f), Color.White);
+            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Cam. Position: " + World.Instance.CameraPosition.ToString(), new Vector2(0f, 100f), Color.White);
+            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Cam. Area: " + World.Instance.CameraViewRect.ToString(), new Vector2(0f, 150f), Color.White);
             World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), string.Concat(new object[]
 			{
 				"Resolution : ",

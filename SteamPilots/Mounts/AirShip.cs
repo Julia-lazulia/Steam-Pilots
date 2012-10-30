@@ -11,8 +11,8 @@ namespace SteamPilots
     public class AirShip : Mount
     {
         #region Properties
-        int maxSpeedX = 400;
-        int maxSpeedY = 400;
+        int maxSpeedX = 200;
+        int maxSpeedY = 100;
         int accelX = 800;
         int accelY = 800;
         #endregion
@@ -36,7 +36,7 @@ namespace SteamPilots
             gravityEffect = 10f;
             active = true;
             radius = 42f;
-            layer = 0;
+            layer = 1;
             tileHeight = 5;
             tileWidth = 7;
             spriteEffects = SpriteEffects.None;

@@ -11,7 +11,8 @@ namespace SteamPilots
     public class EntityPlayer : Entity
     {
         #region Properties
-        private const int playerMaxSpeed = 100;
+        private const float playerMaxSpeed = 100f;
+        private const float playerJumpSpeed = 150f;
         private const int playerAccel = 2000;
         public AirShip airShip;
         public byte currentTile = 1;
@@ -35,7 +36,7 @@ namespace SteamPilots
             airShip.Spawn();
             airShip.ChangeActivity();
             stepValue = 175f;
-            layer = 1;
+            layer = 2;
             position = new Vector2(5000f, 500f);
             velocity = new Vector2(0f, 100f);
             drawPriority = 0f;
@@ -59,6 +60,14 @@ namespace SteamPilots
         }
 
         /// <summary>
+        /// Jump!
+        /// </summary>
+        public void Jump()
+        {
+            velocity.Y = velocity.Y - playerJumpSpeed;
+        }
+
+        /// <summary>
         /// Handle input
         /// </summary>
         private void HandleInput()
@@ -69,22 +78,22 @@ namespace SteamPilots
                 {
                     sprite.PlayAnimation("Run");
                     spriteEffects = SpriteEffects.FlipHorizontally;
-                    if (velocity.X > -180f)
+                    if (velocity.X > -playerMaxSpeed)
                     {
                         velocity.X = velocity.X - playerAccel * World.ElapsedSeconds;
-                        if (velocity.X < -180f)
-                            velocity.X = -180f;
+                        if (velocity.X < -playerMaxSpeed)
+                            velocity.X = -playerMaxSpeed;
                     }
                 }
                 else if (Input.Instance.KeyDown(Keys.D))
                 {
                     sprite.PlayAnimation("Run");
                     spriteEffects = SpriteEffects.None;
-                    if (velocity.X < 180f)
+                    if (velocity.X < playerMaxSpeed)
                     {
                         velocity.X = velocity.X + playerAccel * World.ElapsedSeconds;
-                        if (velocity.X > 180f)
-                            velocity.X = 180f;
+                        if (velocity.X > playerMaxSpeed)
+                            velocity.X = playerMaxSpeed;
                     }
                 }
                 else if (isOnGround)
@@ -92,14 +101,16 @@ namespace SteamPilots
                     sprite.PlayAnimation("Idle");
                     velocity.X = velocity.X / 2f;
                 }
+                /*
                 if (Input.Instance.KeyNewPressed(Keys.Q))
                     if (layer > 1)
                         ChangeLayers(layer - 1);
                 if (Input.Instance.KeyNewPressed(Keys.E))
                     if (layer < 3)
                         ChangeLayers(layer + 1);
+                 */
                 if (Input.Instance.KeyDown(Keys.W) && isOnGround)
-                    velocity.Y = velocity.Y - 250f;
+                    Jump();
                 if (Input.Instance.KeyDown(Keys.W) && velocity.Y < 0f)
                     velocity.Y = velocity.Y - gravityEffect / 2f * World.ElapsedSeconds;
             }

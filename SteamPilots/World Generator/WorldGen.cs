@@ -34,18 +34,31 @@ namespace SteamPilots
         /// <returns>Generated layers</returns>
         public static List<Layer> Generate()
         {
-            rnd = new Random();
+            rnd = new Random(50);
             List<Layer> layers = new List<Layer>();
            
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 ForegroundLayer l = new ForegroundLayer(0.25f + (i * 0.05f));
                 l.Visible = true;
                 layers.Add(l);
             }
             Loop(layers);
+            AddClouds((ForegroundLayer)layers[0]);
             layers.Add(new BackgroundLayer(0.55f));
             return layers;
+        }
+
+        private static void AddClouds(ForegroundLayer l)
+        {
+            for(var i = 0; i < 2000;i++)
+            {
+                var x = rnd.NextDouble() * World.Width;
+                var y = rnd.NextDouble() * World.Height;
+                var speed = 1f + rnd.NextDouble() * 10f;
+
+                l.GetEntities(true).Add(new EntityCloud(new Vector2((float)x, (float)y), (float)speed));
+            }
         }
 
         /// <summary>
@@ -122,7 +135,7 @@ namespace SteamPilots
                     {
                         break;
                     }
-                    for (int layer = 1; layer < layers.Count; layer++)
+                    for (int layer = 2; layer < layers.Count; layer++)
                     {
                         if (y == YPosition)
                             layers[layer].SetTile(x, y, Tile.Grass);

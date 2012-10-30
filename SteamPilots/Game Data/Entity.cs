@@ -28,7 +28,7 @@ namespace SteamPilots
         protected float stepValue = 100f;
         protected bool requiresGroundToStep = true;
         protected int x, y;
-        private Rectangle boundingRect;
+        protected Rectangle boundingRect;
         protected SpriteBatch spriteBatch
         {
             get { return World.Instance.SpriteBatch; }
@@ -70,7 +70,7 @@ namespace SteamPilots
         #region Initialization
         public Entity()
         {
-            layer = 1;
+            layer = 2;
         }
         #endregion
 
@@ -107,7 +107,8 @@ namespace SteamPilots
         /// </summary>
         public virtual void Update()
         {
-            sprite.Update();
+            if(sprite != null)
+                sprite.Update();
             if (collidesWithOtherEntities && mount == null)
             {
                 Entity[] entities = World.Instance.GetForegroundLayer(layer).GetEntities(active).ToArray();
