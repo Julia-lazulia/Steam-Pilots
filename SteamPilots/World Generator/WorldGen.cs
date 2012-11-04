@@ -138,7 +138,10 @@ namespace SteamPilots
                     for (int layer = 2; layer < layers.Count; layer++)
                     {
                         if (y == YPosition)
+                        {
                             layers[layer].SetTile(x, y, Tile.Grass);
+                            if (rnd.Next(30) == 0) generateTree(layers, x, y - 1);
+                        }
                         else
                             layers[layer].SetTile(x, y, Tile.Dirt);
                     }
@@ -158,6 +161,17 @@ namespace SteamPilots
                         }
                     }
                 }
+            }
+        }
+
+        private static void generateTree(List<Layer> layers, int x, int y)
+        {
+            for (int y1 = y; y1 > y - rnd.Next(2) - 4; y1--)
+            {
+                if (y1 < 0) return;
+                layers[2].SetTile(x, y1, Tile.Planks);
+                if (rnd.Next(20) == 0 && y1 != y) layers[2].SetTile(x + 1, y1, Tile.Planks);
+                if (rnd.Next(20) == 0 && y1 != y) layers[2].SetTile(x - 1, y1, Tile.Planks);
             }
         }
         #endregion
