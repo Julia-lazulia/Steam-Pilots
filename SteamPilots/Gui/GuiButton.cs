@@ -14,6 +14,7 @@ namespace SteamPilots
 
         public GuiButton(int id, int x, int y, int width, int height)
         {
+            this.tex = World.Content.Load<Texture2D>("terrain");
             this.id = id;
             this.position = new Vector2(x, y);
             this.boundingBox = new Rectangle(x, y, width, height);

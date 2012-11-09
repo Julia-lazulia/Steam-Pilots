@@ -186,10 +186,9 @@ namespace SteamPilots
                                     {
                                         if (cY == y + tileHeight - 1 && canStep && (isOnGround || !requiresGroundToStep))
                                         {
-                                            //velocity.Y = -stepValue;
-                                            velocity.Y = velocity.X;
+                                            velocity.Y = -stepValue;
                                         }
-                                        position.X = (float)(bounds.Left - boundingRect.Width / 2);
+                                        position.X = (float)(bounds.Left - boundingRect.Width / 2 + 1);
                                         velocity.X = 0f;
                                         canStep = false;
                                     }
@@ -200,8 +199,7 @@ namespace SteamPilots
                                     {
                                         if (cY == y + tileHeight - 1 && canStep && (isOnGround || !requiresGroundToStep))
                                         {
-                                            //velocity.Y = -stepValue;
-                                            velocity.Y = -velocity.X;
+                                            velocity.Y = -stepValue;
                                         }
                                         position.X = (float)(bounds.Right + boundingRect.Width / 2);
                                         velocity.X = 0f;
