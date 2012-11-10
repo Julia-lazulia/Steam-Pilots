@@ -5,16 +5,16 @@ using System.Text;
 
 namespace SteamPilots
 {
-    public class Inventory
+    public class GuiItemContainer : GuiContainer
     {
         Dictionary<IInventoryItem, int> items;
 
-        public Inventory()
+        public GuiItemContainer()
         {
             items = new Dictionary<IInventoryItem, int>();
         }
 
-        public void Add(IInventoryItem i, int count)
+        public void AddItem(IInventoryItem i, int count)
         {
             if (items.ContainsKey(i))
             {
@@ -26,7 +26,7 @@ namespace SteamPilots
             }
         }
 
-        public bool Remove(IInventoryItem i, int count)
+        public bool RemoveItem(IInventoryItem i, int count)
         {
             if (items.ContainsKey(i))
             {

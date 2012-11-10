@@ -16,7 +16,7 @@ namespace SteamPilots
         private const int playerAccel = 2000;
         public AirShip airShip;
         public byte currentTile = 1;
-        public Inventory inventory = new Inventory();
+        public GuiInventory inventory = new GuiInventory();
         public GuiManager currentGui = null;
         #endregion
 
@@ -141,7 +141,7 @@ namespace SteamPilots
                 Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
                 if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && InRange(tile))
                 {
-                    inventory.Add(World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y), 1);
+                    inventory.container.AddItem(World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y), 1);
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Air);
                 }
             }
@@ -149,7 +149,7 @@ namespace SteamPilots
             if (Input.Instance.MouseRightButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
-                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)) && InRange(tile) && inventory.Remove(Tile.GetTile(currentTile), 1))
+                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)) && InRange(tile) && inventory.container.RemoveItem(Tile.GetTile(currentTile), 1))
                 {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
                 }
@@ -169,7 +169,7 @@ namespace SteamPilots
 
             if (Input.Instance.KeyNewPressed(Keys.I))
             {
-                if (currentGui == null) currentGui = new GuiInventory();
+                if (currentGui == null) currentGui = inventory;
                 else if (currentGui is GuiInventory) currentGui = null;
             }
 

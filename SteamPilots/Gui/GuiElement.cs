@@ -12,7 +12,7 @@ namespace SteamPilots
         protected Rectangle boundingBox;
         protected Vector2 position;
         protected Texture2D tex;
-        public Boolean visible;
+        public Boolean visible = true;
 
         public event EventHandler LeftClick;
         public event EventHandler RightClick;

@@ -7,13 +7,41 @@ using Microsoft.Xna.Framework;
 
 namespace SteamPilots
 {
-    public class GuiManager
+    public class GuiContainer : GuiElement
     {
+        private Texture2D background;
+        private Vector2 backgorundPosition;
+        private Color backgroundColor = Color.White;
         private List<GuiElement> Elements;
 
-        public GuiManager()
+        public GuiContainer()
         {
             Elements = new List<GuiElement>();
+        }
+
+        public void SetBackground(String path, Color backgroundColor)
+        {
+            background = World.Content.Load<Texture2D>(path);
+            this.backgroundColor = backgroundColor;
+        }
+
+        public void SetBackgroundPosition(Vector2 pos)
+        {
+            backgorundPosition = pos;
+        }
+
+        public override void Draw()
+        {
+            if (background != null)
+                World.Instance.SpriteBatch.Draw(background, backgorundPosition, backgroundColor);
+
+            for (var i = 0; i < Elements.Count; i++)
+            {
+                if (Elements[i].visible)
+                {
+                    Elements[i].Draw();
+                }
+            }
         }
 
         public void AddGuiElement(GuiElement g)
@@ -26,7 +54,7 @@ namespace SteamPilots
             Elements.Remove(g);
         }
 
-        public void Update(GameTime gt)
+        public override void Update(GameTime gt)
         {
             Input tIn = Input.Instance;
             Vector2 mPos = tIn.MousePosition();
@@ -47,19 +75,7 @@ namespace SteamPilots
                         }
                     }
                 }
-                Elements[i].Update(gt);                
-            }
-
-        }
-
-        public void Draw()
-        {
-            for (var i = 0; i < Elements.Count; i++)
-            {
-                if (Elements[i].visible)
-                {
-                    Elements[i].Draw();
-                }
+                Elements[i].Update(gt);
             }
         }
     }

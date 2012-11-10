@@ -9,13 +9,15 @@ namespace SteamPilots
 {
     public class GuiInventory : GuiManager
     {
-        GuiButton button;
+        public GuiItemContainer container;
 
         public GuiInventory()
             : base()
         {
-            AddGuiElement(button = new GuiButton(0, 50, 50, 100, 100));
-            button.visible = true;
+            container = new GuiItemContainer();
+            container.SetBackground("Player/Inventory", Color.White);
+            container.SetBackgroundPosition(new Vector2(50, 50));
+            AddGuiElement(container);
         }
     }
 }

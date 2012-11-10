@@ -108,20 +108,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation\Animation.cs" />
-    <Compile Include="Game Data\Entity.cs" />
-    <Compile Include="Game Data\EntityCloud.cs" />
+    <Compile Include="Game Data\Entities\Entity.cs" />
+    <Compile Include="Game Data\Entities\EntityCloud.cs" />
     <Compile Include="Game Data\IGameData.cs" />
     <Compile Include="Game Data\IInventoryItem.cs" />
-    <Compile Include="Game Data\Player\Inventory.cs" />
-    <Compile Include="Game Data\Player\EntityPlayer.cs" />
+    <Compile Include="Game Data\Entities\EntityPlayer.cs" />
     <Compile Include="Game Data\Tile System\BackgroundLayer.cs" />
     <Compile Include="Game Data\Tile System\ForegroundLayer.cs" />
     <Compile Include="Game Data\Tile System\Layer.cs" />
     <Compile Include="Game Data\Tile System\Tile.cs" />
     <Compile Include="Game Data\World.cs" />
     <Compile Include="Gui\GuiButton.cs" />
+    <Compile Include="Gui\GuiContainer.cs" />
     <Compile Include="Gui\GuiElement.cs" />
     <Compile Include="Gui\GuiInventory.cs" />
+    <Compile Include="Gui\GuiItemContainer.cs" />
     <Compile Include="Gui\GuiManager.cs" />
     <Compile Include="Helper Classes\Collection.cs" />
     <Compile Include="Game Data\GameStateManager.cs" />

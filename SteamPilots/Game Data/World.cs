@@ -67,8 +67,7 @@ namespace SteamPilots
         {
             EntityCloud.Initialize();
             layers = WorldGen.Generate();
-
-
+            
             player = new EntityPlayer();
             player.Spawn();
             cameraPosition = player.Position - Resolution / 2f;

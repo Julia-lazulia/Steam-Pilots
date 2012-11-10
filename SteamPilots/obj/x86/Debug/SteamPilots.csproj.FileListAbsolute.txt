@@ -32,3 +32,4 @@ C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.exe
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.pdb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\Inventory.xnb
