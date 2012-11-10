@@ -52,13 +52,13 @@ namespace SteamPilots
 
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch s)
         {
             for (var i = 0; i < Elements.Count; i++)
             {
                 if (Elements[i].visible)
                 {
-                    Elements[i].Draw();
+                    Elements[i].Draw(s);
                 }
             }
         }

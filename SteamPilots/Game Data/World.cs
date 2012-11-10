@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SteamPilots
 {
-    public class World : DrawableGameComponent
+    public class World
     {
         static int WORLD_WIDTH = 5000;
         static int WORLD_HEIGHT = 12000;
@@ -25,6 +25,7 @@ namespace SteamPilots
         #endregion
 
         #region Properties
+        private Main main;
         public bool DrawTiles = true;
         int resolutionNum;
         int displayModes;
@@ -37,7 +38,6 @@ namespace SteamPilots
         Texture2D rectDebugTex;
 
         EntityPlayer player;
-        SpriteBatch spriteBatch;
         public static Vector2[] Resolutions = new Vector2[99];
         #endregion
 
@@ -46,10 +46,9 @@ namespace SteamPilots
         /// Initializes the world
         /// </summary>
         /// <param name="game">Game instance</param>
-        private World(Game game)
-            : base(game)
+        private World(Main game)
         {
-            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            this.main = game;
             foreach(DisplayMode displayMode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
             {
                 Resolutions[displayModes] = new Vector2(displayMode.Width, displayMode.Height);
@@ -63,47 +62,45 @@ namespace SteamPilots
         /// <summary>
         /// Initializes the player
         /// </summary>
-        private void InitializePlayer()
+        public void InitializePlayer()
         {
             EntityCloud.Initialize();
             layers = WorldGen.Generate();
             
             player = new EntityPlayer();
             player.Spawn();
-            cameraPosition = player.Position - Resolution / 2f;
+            cameraPosition = player.Position - main.Resolution / 2f;
         }
 
         /// <summary>
         /// Initializes the world
         /// </summary>
         /// <param name="game">Game instance</param>
-        public static void Initialize(Game game)
+        public static void Initialize(Main game)
         {
             if (instance != null)
                 throw new StackOverflowException("World.Initialize can only be called once.");
             instance = new World(game);
-            Input.Initialize(game);
-            instance.InitializePlayer();
+
+
         }
 
-        protected override void LoadContent()
+        public void LoadContent()
         {
             //debug texture to help display rectangle outlines
-            rectDebugTex = new Texture2D(GraphicsDevice, 1, 1);
+            rectDebugTex = new Texture2D(main.GraphicsDevice, 1, 1);
             rectDebugTex.SetData(new[] { Color.Red });
             //rectDebugTex = Content.Load<Texture2D>(@"background_1");
-
-            base.LoadContent();
         }
 
         /// <summary>
         /// Updates the world
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             this.gameTime = gameTime;
-            Vector2 targetCameraPosition = player.Position - Resolution / 2f;
+            Vector2 targetCameraPosition = player.Position - main.Resolution / 2f;
             cameraPosition += (targetCameraPosition - cameraPosition) * 10f * ElapsedSeconds;      
 
             foreach (Layer l in layers)
@@ -120,10 +117,8 @@ namespace SteamPilots
 
             cameraViewArea.X = (int)(cameraPosition.X) - DRAW_MARGIN;
             cameraViewArea.Y = (int)(cameraPosition.Y) - DRAW_MARGIN;
-            cameraViewArea.Width = (int)Resolution.X + 2 * DRAW_MARGIN;
-            cameraViewArea.Height = (int)Resolution.Y + 2 * DRAW_MARGIN;
-
-            base.Update(gameTime);
+            cameraViewArea.Width = (int)main.Resolution.X + 2 * DRAW_MARGIN;
+            cameraViewArea.Height = (int)main.Resolution.Y + 2 * DRAW_MARGIN;
 
         }
 
@@ -131,33 +126,26 @@ namespace SteamPilots
         /// Draws the world
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        public override void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch sb)
         {
-            this.gameTime = gameTime;
-            Matrix matrix = Matrix.Identity;
-            if (Main.ScaleToScreen)
-                matrix = Matrix.CreateScale(ScreenScaling.X, ScreenScaling.Y, 1f);
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, matrix);
+          
             foreach (Layer l in layers)
             {
                 if (l.Active && l.Visible)
                 {
-                    l.Draw();
+                    l.Draw(sb);
                 }
             }
             
-            spriteBatch.Draw(Tile.GetTile(player.currentTile).GetTextureFile(), new Rectangle(10, 100, Tile.TileSize, Tile.TileSize), Tile.GetTile(player.currentTile).GetSource(), Color.White);
+            sb.Draw(Tile.GetTile(player.currentTile).GetTextureFile(), new Rectangle(10, 100, Tile.TileSize, Tile.TileSize), Tile.GetTile(player.currentTile).GetSource(), Color.White);
 
             var bw = 2;
             //spriteBatch.Draw(rectDebugTex, cameraViewArea, null, Color.Red, 0f, Vector2.Zero, SpriteEffects.None, 1f);
-            spriteBatch.Draw(rectDebugTex, new Rectangle(cameraViewArea.Left - (int)CameraPosition.X, cameraViewArea.Top - (int)CameraPosition.Y, bw, cameraViewArea.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Left
-            spriteBatch.Draw(rectDebugTex, new Rectangle(cameraViewArea.Right - (int)CameraPosition.X, cameraViewArea.Top - (int)CameraPosition.Y, bw, cameraViewArea.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Right
-            spriteBatch.Draw(rectDebugTex, new Rectangle(cameraViewArea.Left - (int)CameraPosition.X, cameraViewArea.Top - (int)CameraPosition.Y, cameraViewArea.Width, bw), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Top
-            spriteBatch.Draw(rectDebugTex, new Rectangle(cameraViewArea.Left - (int)CameraPosition.X, cameraViewArea.Bottom - (int)CameraPosition.Y, cameraViewArea.Width, bw), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Bottom
+            sb.Draw(rectDebugTex, new Rectangle(cameraViewArea.Left - (int)CameraPosition.X, cameraViewArea.Top - (int)CameraPosition.Y, bw, cameraViewArea.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Left
+            sb.Draw(rectDebugTex, new Rectangle(cameraViewArea.Right - (int)CameraPosition.X, cameraViewArea.Top - (int)CameraPosition.Y, bw, cameraViewArea.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Right
+            sb.Draw(rectDebugTex, new Rectangle(cameraViewArea.Left - (int)CameraPosition.X, cameraViewArea.Top - (int)CameraPosition.Y, cameraViewArea.Width, bw), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Top
+            sb.Draw(rectDebugTex, new Rectangle(cameraViewArea.Left - (int)CameraPosition.X, cameraViewArea.Bottom - (int)CameraPosition.Y, cameraViewArea.Width, bw), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Bottom
 
-            spriteBatch.End();
-
-            base.Draw(gameTime);
         }
 
         /// <summary>
@@ -176,10 +164,6 @@ namespace SteamPilots
         #endregion
 
         #region Helper Methods
-        public static Vector2 Resolution
-        {
-            get { return Resolutions[instance.resolutionNum]; }
-        }
 
         public Vector2 CameraPosition
         {
@@ -201,15 +185,6 @@ namespace SteamPilots
             get { return player; }
         }
 
-        public SpriteBatch SpriteBatch
-        {
-            get { return spriteBatch; }
-        }
-
-        public Vector2 ScreenScaling
-        {
-            get { return new Vector2(Main.ScreenSize.X / Resolution.X, Main.ScreenSize.Y / World.Resolution.Y); }
-        }
 
         public static float ElapsedSeconds
         {
@@ -228,7 +203,7 @@ namespace SteamPilots
 
         public static ContentManager Content
         {
-            get { return instance.Game.Content; }
+            get { return GameStateManager.Main.Content; }
         }
 
         public static GameTime GameTime

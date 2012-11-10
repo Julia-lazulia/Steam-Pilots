@@ -37,11 +37,11 @@ namespace SteamPilots
             boundingRect.Y = (int)position.Y;
         }
 
-        public override void Draw(float layerDepth)
+        public override void Draw(SpriteBatch sb, float layerDepth)
         {
             if (World.Instance.CameraViewRect.Contains(boundingRect))
             {
-                spriteBatch.Draw(cloudTex, position - World.Instance.CameraPosition, null, Color.White, 0f, Vector2.Zero, 1f, spriteEffects, layerDepth);
+                sb.Draw(cloudTex, position - World.Instance.CameraPosition, null, Color.White, 0f, Vector2.Zero, 1f, spriteEffects, layerDepth);
             }
         }
     }

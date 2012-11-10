@@ -110,6 +110,10 @@
     <Compile Include="Animation\Animation.cs" />
     <Compile Include="Game Data\Entities\Entity.cs" />
     <Compile Include="Game Data\Entities\EntityCloud.cs" />
+    <Compile Include="Game Data\GameStates\BuildState.cs" />
+    <Compile Include="Game Data\GameStates\GameStateManager.cs" />
+    <Compile Include="Game Data\GameStates\PlayState.cs" />
+    <Compile Include="Game Data\GameStates\StartState.cs" />
     <Compile Include="Game Data\IGameData.cs" />
     <Compile Include="Game Data\IInventoryItem.cs" />
     <Compile Include="Game Data\Entities\EntityPlayer.cs" />
@@ -125,7 +129,6 @@
     <Compile Include="Gui\GuiItemContainer.cs" />
     <Compile Include="Gui\GuiManager.cs" />
     <Compile Include="Helper Classes\Collection.cs" />
-    <Compile Include="Game Data\GameStateManager.cs" />
     <Compile Include="Game Data\GameStates\IGameState.cs" />
     <Compile Include="Helper Classes\Input.cs" />
     <Compile Include="Mounts\AirShip.cs" />

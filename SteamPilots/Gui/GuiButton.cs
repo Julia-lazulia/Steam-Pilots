@@ -20,10 +20,10 @@ namespace SteamPilots
             this.boundingBox = new Rectangle(x, y, width, height);
         }
 
-        public override void Draw()
+        public override void Draw(SpriteBatch s)
         {
-            World.Instance.SpriteBatch.Draw(tex, boundingBox, Color.White);
-            base.Draw();
+            s.Draw(tex, boundingBox, Color.White);
+            base.Draw(s);
         }
     }
 }

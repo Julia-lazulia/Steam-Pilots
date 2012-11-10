@@ -152,13 +152,13 @@ namespace SteamPilots
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <param name="layer">Layer</param>
-        public void Draw(int x, int y, Layer layer)
+        public void Draw(int x, int y, Layer layer, SpriteBatch sb)
         {
             Rectangle bounds = GetBounds(x, y);
             Rectangle source = GetSource();
             bounds.X -= (int)World.Instance.CameraPosition.X;
             bounds.Y -= (int)World.Instance.CameraPosition.Y;
-            World.Instance.SpriteBatch.Draw(GetTextureFile(), bounds, source, Color.White, 0f, Vector2.Zero, SpriteEffects.None, layer.LayerDepth);
+            sb.Draw(GetTextureFile(), bounds, source, Color.White, 0f, Vector2.Zero, SpriteEffects.None, layer.LayerDepth);
         }
 
         /// <summary>

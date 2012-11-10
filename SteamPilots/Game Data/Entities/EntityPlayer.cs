@@ -138,7 +138,7 @@ namespace SteamPilots
             
             if (Input.Instance.MouseLeftButtonNewPressed())
             {
-                Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
+                Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
                 if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && InRange(tile))
                 {
                     inventory.container.AddItem(World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y), 1);
@@ -148,7 +148,7 @@ namespace SteamPilots
 
             if (Input.Instance.MouseRightButtonNewPressed())
             {
-                Vector2 tile = (Input.Instance.MousePosition() / World.Instance.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
+                Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
                 if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)) && InRange(tile) && inventory.container.RemoveItem(Tile.GetTile(currentTile), 1))
                 {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
@@ -185,10 +185,11 @@ namespace SteamPilots
             return Math.Ceiling(new Vector2(tile.X - boundingRect.Center.X, tile.Y - boundingRect.Center.Y).Length() / 16) < 4;
         }
 
-        public override void Draw(float layerDepth)
+        public override void Draw(SpriteBatch s, float layerDepth)
         {
-            base.Draw(layerDepth);
-            if(currentGui != null) currentGui.Draw();
+            base.Draw(s, layerDepth);
+            if(currentGui != null) 
+                currentGui.Draw(s);
         }
         #endregion
     }

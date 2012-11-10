@@ -9,6 +9,8 @@ namespace SteamPilots
 {
     public interface IGameState
     {
+        bool IsReady { get; set; }
+
         void EnterState();
 
         void LeaveState();

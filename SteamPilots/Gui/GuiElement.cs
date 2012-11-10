@@ -27,7 +27,7 @@ namespace SteamPilots
         {
         }
 
-        public virtual void Draw()
+        public virtual void Draw(SpriteBatch s)
         {
         }
 

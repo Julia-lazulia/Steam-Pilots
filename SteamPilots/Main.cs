@@ -16,6 +16,7 @@ namespace SteamPilots
         GraphicsDeviceManager graphics;
         public static Vector2 ScreenSize;
         public static bool ScaleToScreen;
+        private SpriteBatch spriteBatch;
 
         public Main()
         {
@@ -38,10 +39,12 @@ namespace SteamPilots
         
         protected override void Initialize()
         {
-            World.Initialize(this);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Components.Add(World.Instance);
+            Input.Initialize(this);
             Components.Add(Input.Instance);
+            GameStateManager.Main = this;
+            GameStateManager.Initialize(new StartState());            
 
             base.Initialize();
         }
@@ -57,36 +60,36 @@ namespace SteamPilots
 
         protected override void Update(GameTime gameTime)
         {
-            if (Input.Instance.KeyNewPressed(Keys.Escape))
-                Exit();
+            GameStateManager.Update(gameTime);
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             base.Draw(gameTime);
+            Matrix matrix = Matrix.Identity;
+            if (Main.ScaleToScreen)
+            {
+                matrix = Matrix.CreateScale(ScreenScaling.X, ScreenScaling.Y, 1f);
+            }
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, matrix);
 
-            World.Instance.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, null, null);
+            GameStateManager.Draw(spriteBatch);
 
-            // Debug info
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Fps : " + Math.Round((double)(1f / (float)gameTime.ElapsedGameTime.TotalSeconds)), Vector2.Zero, Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Position: " + World.Instance.Player.Position.ToString(), new Vector2(0f, 25f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Velocity: " + World.Instance.Player.Velocity.ToString(), new Vector2(0f, 50f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Mnt. Velocity: " + World.Instance.Player.airShip.Velocity.ToString(), new Vector2(0f, 75f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Cam. Position: " + World.Instance.CameraPosition.ToString(), new Vector2(0f, 100f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), "Cam. Area: " + World.Instance.CameraViewRect.ToString(), new Vector2(0f, 150f), Color.White);
-            World.Instance.SpriteBatch.DrawString(Content.Load<SpriteFont>("SpriteFont1"), string.Concat(new object[]
-			{
-				"Resolution : ",
-				(int)ScreenSize.X,
-				"x",
-				(int)ScreenSize.Y
-			}), new Vector2(0f, 125f), Color.White);
+            spriteBatch.End();
+        }
 
-            World.Instance.SpriteBatch.End();
+        public Vector2 ScreenScaling
+        {
+            get { return new Vector2(ScreenSize.X / Resolution.X, ScreenSize.Y / Resolution.Y); }
+        }
+
+        public Vector2 Resolution
+        {
+            get { return ScreenSize; }
         }
     }
 }

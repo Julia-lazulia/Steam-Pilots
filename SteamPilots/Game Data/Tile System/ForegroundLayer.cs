@@ -52,14 +52,14 @@ namespace SteamPilots
         /// <summary>
         /// Draw the layer
         /// </summary>
-        public override void Draw()
+        public override void Draw(SpriteBatch s)
         {
             Entity[] sortedEntities = ActiveEntities.ToArray();
             Array.Sort<Entity>(sortedEntities);
             foreach (Entity e in sortedEntities)
-                e.Draw(layerDepth);
+                e.Draw(s, layerDepth);
 
-            base.Draw();
+            base.Draw(s);
         }
         
         /// <summary>

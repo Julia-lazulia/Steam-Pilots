@@ -19,10 +19,10 @@ namespace SteamPilots
         }
 
         // Background
-        public override void Draw()
+        public override void Draw(SpriteBatch s)
         {
-            World.Instance.SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, (int)Main.ScreenSize.X, (int)Main.ScreenSize.Y), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, layerDepth);
-            base.Draw();
+            s.Draw(backgroundTexture, new Rectangle(0, 0, (int)Main.ScreenSize.X, (int)Main.ScreenSize.Y), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, layerDepth);
+            base.Draw(s);
         }
     }
 }

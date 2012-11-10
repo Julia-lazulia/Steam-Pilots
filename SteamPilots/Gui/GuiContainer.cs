@@ -30,16 +30,16 @@ namespace SteamPilots
             backgorundPosition = pos;
         }
 
-        public override void Draw()
+        public override void Draw(SpriteBatch s)
         {
             if (background != null)
-                World.Instance.SpriteBatch.Draw(background, backgorundPosition, backgroundColor);
+                s.Draw(background, backgorundPosition, backgroundColor);
 
             for (var i = 0; i < Elements.Count; i++)
             {
                 if (Elements[i].visible)
                 {
-                    Elements[i].Draw();
+                    Elements[i].Draw(s);
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SteamPilots
 {
@@ -80,14 +81,14 @@ namespace SteamPilots
         /// <summary>
         /// Draw the layer
         /// </summary>
-        public virtual void Draw()
+        public virtual void Draw(SpriteBatch s)
         {
             if (tileData != null)
             {
                 int left = (int)(World.Instance.CameraPosition.X / Tile.TileSize);
-                int right = (int)((World.Instance.CameraPosition.X + World.Resolution.X) / Tile.TileSize) + 1;
+                int right = (int)((World.Instance.CameraPosition.X + GameStateManager.Main.Resolution.X) / Tile.TileSize) + 1;
                 int top = (int)(World.Instance.CameraPosition.Y / Tile.TileSize);
-                int bottom = (int)((World.Instance.CameraPosition.Y + World.Resolution.Y) / Tile.TileSize) + 1;
+                int bottom = (int)((World.Instance.CameraPosition.Y + GameStateManager.Main.Resolution.Y) / Tile.TileSize) + 1;
 
                 if (left < 0)
                     left = 0;
@@ -107,7 +108,7 @@ namespace SteamPilots
                             Tile tile = GetTile(x, y);
                             if (tile != Tile.Air)
                                 if (World.Instance.DrawTiles)
-                                    tile.Draw(x, y, this);
+                                    tile.Draw(x, y, this, s);
                         }
                     }
                 }

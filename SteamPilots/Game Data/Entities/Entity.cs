@@ -29,10 +29,6 @@ namespace SteamPilots
         protected bool requiresGroundToStep = true;
         protected int x, y;
         protected Rectangle boundingRect;
-        protected SpriteBatch spriteBatch
-        {
-            get { return World.Instance.SpriteBatch; }
-        }
 
         public Vector2 Position
         {
@@ -259,9 +255,9 @@ namespace SteamPilots
         /// <summary>
         /// Draws the entity
         /// </summary>
-        public virtual void Draw(float layerDepth)
+        public virtual void Draw(SpriteBatch s, float layerDepth)
         {
-            sprite.Draw(spriteBatch, position - World.Instance.CameraPosition, 1f, 0f, spriteEffects, Color.White, layerDepth);
+            sprite.Draw(s, position - World.Instance.CameraPosition, 1f, 0f, spriteEffects, Color.White, layerDepth);
         }
 
         /// <summary>
