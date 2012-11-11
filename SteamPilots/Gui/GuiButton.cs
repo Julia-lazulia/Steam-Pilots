@@ -11,19 +11,31 @@ namespace SteamPilots
     public class GuiButton : GuiElement
     {
         public int id;
+        public String text;
 
-        public GuiButton(int id, int x, int y, int width, int height)
+        public GuiButton(int id, int x, int y, int width, int height, String text)
         {
-            this.tex = World.Content.Load<Texture2D>("terrain");
+            this.tex = new Texture2D(GameStateManager.Main.GraphicsDevice, width, height);
+            uint[] black = new uint[width * height];
+            for (int i = 0; i < width * height; i++)
+                black[i] = new Color(0, 0, 0, 255).PackedValue;
+            tex.SetData<uint>(black);
             this.id = id;
             this.position = new Vector2(x, y);
             this.boundingBox = new Rectangle(x, y, width, height);
+            this.text = text;
+            this.LeftClick += LeftClickHandler;
+        }
+
+        void LeftClickHandler(Object sender, EventArgs eventArgs)
+        {
+            Console.WriteLine("BUTTON PRESSED!");
         }
 
         public override void Draw(SpriteBatch s)
         {
             s.Draw(tex, boundingBox, Color.White);
-            base.Draw(s);
+            s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), text, position, Color.White);
         }
     }
 }

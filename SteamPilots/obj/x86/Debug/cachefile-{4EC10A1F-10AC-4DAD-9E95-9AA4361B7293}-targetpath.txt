@@ -1,4 +1,3 @@
-Content\SpriteFont1.xnb
 Content\Player\playerIdle.xnb
 Content\Player\playerRun.xnb
 Content\terrain.xnb
@@ -8,4 +7,5 @@ Content\Env\cld_small.xnb
 Content\Player\Inventory.xnb
 Content\Quickmockuplogo2.xnb
 Content\Hangarship2.xnb
+Content\SpriteFont1.xnb
 Content\Env\cld_small.png

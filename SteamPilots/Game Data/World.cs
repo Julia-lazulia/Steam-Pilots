@@ -18,7 +18,7 @@ namespace SteamPilots
         {
             get
             {
-                if (instance == null) throw new NullReferenceException("World has not yet been initialized");
+                //if (instance == null) throw new NullReferenceException("World has not yet been initialized");
                 return instance;
             }
         }
@@ -81,8 +81,6 @@ namespace SteamPilots
             if (instance != null)
                 throw new StackOverflowException("World.Initialize can only be called once.");
             instance = new World(game);
-
-
         }
 
         public void LoadContent()
@@ -136,9 +134,7 @@ namespace SteamPilots
                     l.Draw(sb);
                 }
             }
-            
-            sb.Draw(Tile.GetTile(player.currentTile).GetTextureFile(), new Rectangle(10, 100, Tile.TileSize, Tile.TileSize), Tile.GetTile(player.currentTile).GetSource(), Color.White);
-
+           
             var bw = 2;
             //spriteBatch.Draw(rectDebugTex, cameraViewArea, null, Color.Red, 0f, Vector2.Zero, SpriteEffects.None, 1f);
             sb.Draw(rectDebugTex, new Rectangle(cameraViewArea.Left - (int)CameraPosition.X, cameraViewArea.Top - (int)CameraPosition.Y, bw, cameraViewArea.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f); // Left

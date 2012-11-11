@@ -18,7 +18,6 @@ C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\ResolveA
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.exe
 C:\Users\Martin\Documents\GitHub\Steam-Pilots\SteamPilots\obj\x86\Debug\SteamPilots.pdb
-C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\SpriteFont1.xnb
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\playerIdle.xnb
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\playerRun.xnb
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\terrain.xnb
@@ -35,3 +34,4 @@ C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Player\Inventory.xnb
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Quickmockuplogo2.xnb
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Hangarship2.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\SpriteFont1.xnb

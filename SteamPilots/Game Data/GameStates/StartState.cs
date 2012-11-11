@@ -30,7 +30,7 @@ namespace SteamPilots
             duration -= (float)gt.ElapsedGameTime.TotalSeconds;
             if (duration <= 0f)
             {
-                GameStateManager.SwitchState(new PlayState());
+                GameStateManager.SwitchState(new PlayState(false));
                 duration = 1000f;
             }
         }

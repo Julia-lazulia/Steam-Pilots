@@ -5,13 +5,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SteamPilots
 {
-    class PlayState : IGameState
+    class PauseState : IGameState
     {
+        public bool _debug;
         private bool _isready;
         private int _fps;
-        private bool _debug;
+        private GuiPauseMenu pauseMenu;
 
-        public PlayState(bool _debug)
+        public PauseState(bool _debug)
         {
             _isready = false;
             this._debug = _debug;
@@ -19,45 +20,31 @@ namespace SteamPilots
 
         public void EnterState()
         {
-            if (World.Instance == null)
-            {
-                World.Initialize(GameStateManager.Main);
-                World.Instance.LoadContent();
-                World.Instance.InitializePlayer();
-            }
             _isready = true;
+            pauseMenu = new GuiPauseMenu();
         }
 
         public void LeaveState()
         {
-            
         }
 
         public void Update(GameTime gt)
         {
             _fps = (int)(1.0 / gt.ElapsedGameTime.TotalSeconds);
-            if(Input.Instance.KeyNewPressed(Keys.B))
+            if (Input.Instance.KeyNewPressed(Keys.Escape))
             {
-                GameStateManager.SwitchState(new BuildState());
-            }
-            if (Input.Instance.KeyNewPressed(Keys.Escape) && World.Instance.Player.currentGui == null)
-            {
-                GameStateManager.SwitchState(new PauseState(_debug));
-            }
-            else if (Input.Instance.KeyNewPressed(Keys.Escape))
-            {
-                World.Instance.Player.currentGui = null;
+                GameStateManager.SwitchState(new PlayState(_debug));
             }
             if (Input.Instance.KeyNewPressed(Keys.F3))
             {
                 _debug = !_debug;
             }
-            World.Instance.Update(gt);
+            pauseMenu.Update(gt);
         }
 
         public void Draw(SpriteBatch sb)
         {
-            if(_debug)
+            if (_debug)
             {
                 sb.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), "Fps : " + _fps, Vector2.Zero, Color.White);
                 sb.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), "Position: " + World.Instance.Player.Position.ToString(), new Vector2(0f, 25f), Color.White);
@@ -75,6 +62,7 @@ namespace SteamPilots
 				(int)ScreenSize.Y
 			}), new Vector2(0f, 125f), Color.White);*/
             World.Instance.Draw(sb);
+            pauseMenu.Draw(sb);
         }
 
         public bool IsReady

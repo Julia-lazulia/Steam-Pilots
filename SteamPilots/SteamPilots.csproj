@@ -112,6 +112,7 @@
     <Compile Include="Game Data\Entities\EntityCloud.cs" />
     <Compile Include="Game Data\GameStates\BuildState.cs" />
     <Compile Include="Game Data\GameStates\GameStateManager.cs" />
+    <Compile Include="Game Data\GameStates\PauseState.cs" />
     <Compile Include="Game Data\GameStates\PlayState.cs" />
     <Compile Include="Game Data\GameStates\StartState.cs" />
     <Compile Include="Game Data\IGameData.cs" />
@@ -128,7 +129,9 @@
     <Compile Include="Gui\GuiInventory.cs" />
     <Compile Include="Gui\GuiItemContainer.cs" />
     <Compile Include="Gui\GuiManager.cs" />
+    <Compile Include="Gui\GuiPauseMenu.cs" />
     <Compile Include="Gui\GuiSlot.cs" />
+    <Compile Include="Gui\GuiText.cs" />
     <Compile Include="Helper Classes\Collection.cs" />
     <Compile Include="Game Data\GameStates\IGameState.cs" />
     <Compile Include="Helper Classes\Input.cs" />
