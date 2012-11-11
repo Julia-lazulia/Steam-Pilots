@@ -110,6 +110,7 @@
     <Compile Include="Animation\Animation.cs" />
     <Compile Include="Game Data\Entities\Entity.cs" />
     <Compile Include="Game Data\Entities\EntityCloud.cs" />
+    <Compile Include="Game Data\Entities\EntityItem.cs" />
     <Compile Include="Game Data\GameStates\BuildState.cs" />
     <Compile Include="Game Data\GameStates\GameStateManager.cs" />
     <Compile Include="Game Data\GameStates\PauseState.cs" />
@@ -118,6 +119,8 @@
     <Compile Include="Game Data\IGameData.cs" />
     <Compile Include="Game Data\IInventoryItem.cs" />
     <Compile Include="Game Data\Entities\EntityPlayer.cs" />
+    <Compile Include="Game Data\Item System\Item.cs" />
+    <Compile Include="Game Data\Item System\ItemStack.cs" />
     <Compile Include="Game Data\Tile System\BackgroundLayer.cs" />
     <Compile Include="Game Data\Tile System\ForegroundLayer.cs" />
     <Compile Include="Game Data\Tile System\Layer.cs" />

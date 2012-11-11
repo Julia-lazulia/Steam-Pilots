@@ -85,10 +85,10 @@ namespace SteamPilots
         {
             if (tileData != null)
             {
-                int left = (int)(World.Instance.CameraPosition.X / Tile.TileSize);
-                int right = (int)((World.Instance.CameraPosition.X + GameStateManager.Main.Resolution.X) / Tile.TileSize) + 1;
-                int top = (int)(World.Instance.CameraPosition.Y / Tile.TileSize);
-                int bottom = (int)((World.Instance.CameraPosition.Y + GameStateManager.Main.Resolution.Y) / Tile.TileSize) + 1;
+                int left = (int)(World.Instance.CameraPosition.X / Tile.SpriteSize);
+                int right = (int)((World.Instance.CameraPosition.X + GameStateManager.Main.Resolution.X) / Tile.SpriteSize) + 1;
+                int top = (int)(World.Instance.CameraPosition.Y / Tile.SpriteSize);
+                int bottom = (int)((World.Instance.CameraPosition.Y + GameStateManager.Main.Resolution.Y) / Tile.SpriteSize) + 1;
 
                 if (left < 0)
                     left = 0;
@@ -125,7 +125,7 @@ namespace SteamPilots
         {
             if (!IsValidTile(x, y))
                 throw new IndexOutOfRangeException("Tile out of range in Tile.GetTile");
-            return Tile.GetTile(tileData[y * Width + x]);
+            return Tile.Tiles[tileData[y * Width + x]];
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace SteamPilots
         {
             if (!IsValidTile(x, y))
                 throw new IndexOutOfRangeException("Tile out of range in Tile.SetTile");
-            tileData[y * Width + x] = Tile.GetByte(tile);
+            tileData[y * Width + x] = (byte)tile.TileIndex;
         }
 
         public Boolean TileExists(int x, int y)

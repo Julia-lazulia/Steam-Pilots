@@ -8,4 +8,5 @@ Content\Player\Inventory.xnb
 Content\Quickmockuplogo2.xnb
 Content\Hangarship2.xnb
 Content\SpriteFont1.xnb
+Content\items.xnb
 Content\Env\cld_small.png

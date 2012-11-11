@@ -73,7 +73,7 @@ namespace SteamPilots
         {
             if (tile != null)
             {
-                Rectangle tileBounds = new Rectangle(x * 16, y * 16, (int)(tile.Size.X * Tile.TileSize), (int)(tile.Size.Y * Tile.TileSize));
+                Rectangle tileBounds = new Rectangle(x * 16, y * 16, (int)(tile.TileSize.X * Tile.SpriteSize), (int)(tile.TileSize.Y * Tile.SpriteSize));
                 Entity[] entities = GetEntities(true).ToArray();
                 for (int index = 0; index < entities.Length; index++)
                 {

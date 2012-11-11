@@ -79,6 +79,11 @@ namespace SteamPilots
             World.Instance.GetForegroundLayer(layer).GetEntities(active).Add(this);
         }
 
+        public virtual void Destroy()
+        {
+            World.Instance.GetForegroundLayer(layer).GetEntities(active).Remove(this);
+        }
+
         /// <summary>
         /// Dismounts the entity
         /// </summary>

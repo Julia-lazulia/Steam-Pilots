@@ -138,20 +138,20 @@ namespace SteamPilots
             
             if (Input.Instance.MouseLeftButtonNewPressed())
             {
-                Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
+                Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
                 if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && InRange(tile))
                 {
-                    inventory.container.AddItem(World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y), 1);
+                    inventory.container.AddItem(Item.Items[World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y).TileIndex], 1);
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Air);
                 }
             }
 
             if (Input.Instance.MouseRightButtonNewPressed())
             {
-                Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.TileSize;
-                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile)) && InRange(tile) && inventory.container.RemoveItem(Tile.GetTile(currentTile), 1))
+                Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
+                if (World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(layer).CanPlace((int)tile.X, (int)tile.Y, Tile.Tiles[currentTile]) && InRange(tile) && inventory.container.RemoveItem(Item.Items[Tile.Tiles[currentTile].TileIndex], 1))
                 {
-                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.GetTile(currentTile));
+                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Tiles[currentTile]);
                 }
             }
 
@@ -181,7 +181,7 @@ namespace SteamPilots
 
         public Boolean InRange(Vector2 tile)
         {
-            tile = new Vector2(tile.X * Tile.TileSize, tile.Y * Tile.TileSize);
+            tile = new Vector2(tile.X * Tile.SpriteSize, tile.Y * Tile.SpriteSize);
             return Math.Ceiling(new Vector2(tile.X - boundingRect.Center.X, tile.Y - boundingRect.Center.Y).Length() / 16) < 4;
         }
 

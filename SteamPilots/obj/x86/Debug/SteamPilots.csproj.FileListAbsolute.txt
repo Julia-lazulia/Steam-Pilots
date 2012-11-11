@@ -35,3 +35,4 @@ C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Quickmockuplogo2.xnb
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Hangarship2.xnb
 C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\items.xnb

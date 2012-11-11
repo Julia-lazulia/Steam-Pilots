@@ -9,12 +9,11 @@ namespace SteamPilots
     {
         INV_TOOL,
         INV_TILE,
-        INV_ENTITY,
+        INV_ITEM,
     }
 
     public interface IInventoryItem
     {
-        int InvImageIndex { get; set; }
         string ToolTip { get; set; }
         InventoryType InventoryType { get; set; }
     }
