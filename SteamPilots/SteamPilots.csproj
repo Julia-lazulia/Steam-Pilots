@@ -119,8 +119,10 @@
     <Compile Include="Game Data\IGameData.cs" />
     <Compile Include="Game Data\IInventoryItem.cs" />
     <Compile Include="Game Data\Entities\EntityPlayer.cs" />
+    <Compile Include="Game Data\Item System\IPlaceable.cs" />
     <Compile Include="Game Data\Item System\Item.cs" />
     <Compile Include="Game Data\Item System\ItemStack.cs" />
+    <Compile Include="Game Data\Item System\ItemTile.cs" />
     <Compile Include="Game Data\Tile System\BackgroundLayer.cs" />
     <Compile Include="Game Data\Tile System\ForegroundLayer.cs" />
     <Compile Include="Game Data\Tile System\Layer.cs" />

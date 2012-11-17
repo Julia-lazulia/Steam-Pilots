@@ -7,42 +7,55 @@ namespace SteamPilots
 {
     public class GuiItemContainer : GuiContainer
     {
-        Dictionary<IInventoryItem, int> items;
+        // The item list containing ItemStacks with data
+        public ItemStack[] items;
 
         public GuiItemContainer()
         {
-            items = new Dictionary<IInventoryItem, int>();
+            items = new ItemStack[80];
         }
 
-        public void AddItem(IInventoryItem i, int count)
+        /// <summary>
+        /// Tries to add an item to the itemlist
+        /// </summary>
+        /// <param name="itemstack">Item to be added</param>
+        /// <returns>Returns if it's added to the itemlist</returns>
+        public bool AddItemStack(ItemStack itemstack)
         {
-            if (items.ContainsKey(i))
+            for (int index = 0; index < items.Length; index++)
             {
-                items[i] += count;
+                if (items[index].ItemId == itemstack.ItemId)
+                {
+                    items[index].StackSize += itemstack.StackSize;
+                    return true;
+                }
+                else if (items[index] == null)
+                {
+                    items[index] = itemstack;
+                    return true;
+                }
             }
-            else
-            {
-                items.Add(i, count);
-            }
+            return false;
         }
 
-        public bool RemoveItem(IInventoryItem i, int count)
+        /// <summary>
+        /// Tries to remove an item from the itemlist
+        /// </summary>
+        /// <param name="itemstack">Item to be removed</param>
+        /// <returns>Returns if it's removed from the itemlist</returns>
+        public bool RemoveItem(ItemStack itemstack)
         {
-            if (items.ContainsKey(i))
+            for (int index = 0; index < items.Length; index++)
             {
-                if (items[i] > count)
+                if (items[index].ItemId == itemstack.ItemId && items[index].StackSize > itemstack.StackSize)
                 {
-                    items[i] -= count;
+                    items[index].StackSize -= itemstack.StackSize;
                     return true;
                 }
-                else if (items[i] == count)
+                else if (items[index].StackSize == itemstack.StackSize)
                 {
-                    items.Remove(i);
+                    items[index] = null;
                     return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
             return false;

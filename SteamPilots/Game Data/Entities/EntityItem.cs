@@ -21,7 +21,7 @@ namespace SteamPilots
             this.collidesWithTiles = true;
             this.position = Position;
             this.active = true;
-            this.boundingRect = new Rectangle((int)Position.X, (int)Position.Y, Item.Items[ItemStack.ItemId].SpriteSize, Item.Items[ItemStack.ItemId].SpriteSize);
+            this.boundingRect = new Rectangle((int)Position.X, (int)Position.Y, Item.SpriteSize, Item.SpriteSize);
             this.radius = 2f;
         }
 
@@ -30,14 +30,14 @@ namespace SteamPilots
             if (e is EntityPlayer)
             {
                 this.Destroy();
-                ((EntityPlayer)e).inventory.container.AddItem(Item.Items[ItemStack.ItemId], ItemStack.StackSize);
+                ((EntityPlayer)e).inventory.container.AddItemStack(ItemStack);
             }
             base.OnCollide(e);
         }
 
         public override void Draw(SpriteBatch sb, float layerDepth)
         {
-            Item.Items[ItemStack.ItemId].Draw(sb, position);
+            Item.Items[ItemStack.ItemId].Draw(sb, position - World.Instance.CameraPosition);
         }
     }
 }

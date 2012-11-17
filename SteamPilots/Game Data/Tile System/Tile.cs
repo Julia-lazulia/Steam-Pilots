@@ -18,7 +18,7 @@ namespace SteamPilots
         #endregion
 
         #region Static
-        public static int SpriteSize = 16;
+        public const int SpriteSize = 16;
         public static Tile[] Tiles = new Tile[4096];
         public static Tile Air = new Tile(0, 0).SetCollides(false);
         public static Tile Dirt = new Tile(1, 0);

@@ -33,7 +33,7 @@ namespace SteamPilots
             {
                 if (value == InventoryType.INV_TILE)
                 {
-                    this.SpriteFile = Tile.Tiles[this.ItemIndex].SpriteFile;
+                    this.SpriteFile = Tile.Tiles[this.ItemIndex].SpriteFile; 
                 }
                 inventoryType = value;
             }
@@ -41,17 +41,15 @@ namespace SteamPilots
         public String ItemName = "";
         public int ItemIndex;
         public int TextureIndex;
-        public int SpriteSize = 16;
-        
         public Texture2D SpriteFile;
         #endregion
 
         #region Class Properties
+        public const int SpriteSize = 16;
         public static Item[] Items = new Item[4096];
-        public static Item Air = new Item(0, 0).SetInventoryType(InventoryType.INV_TILE);
-        public static Item Dirt = new Item(1, 0).SetInventoryType(InventoryType.INV_TILE).SetItemName("Dirt");
-        public static Item Grass = new Item(2, 1).SetInventoryType(InventoryType.INV_TILE).SetItemName("Grass");
-        public static Item Planks = new Item(3, 2).SetInventoryType(InventoryType.INV_TILE).SetItemName("Planks");
+        public static Item Dirt = new ItemTile(1, 0).SetInventoryType(InventoryType.INV_TILE).SetItemName("Dirt");
+        public static Item Grass = new ItemTile(2, 65).SetInventoryType(InventoryType.INV_TILE).SetItemName("Grass");
+        public static Item Planks = new ItemTile(3, 99).SetInventoryType(InventoryType.INV_TILE).SetItemName("Planks");
         #endregion
 
         #region Initialization
@@ -93,6 +91,10 @@ namespace SteamPilots
             return this;
         }
 
+        /// <summary>
+        /// Gets the source rectangle for the texture
+        /// </summary>
+        /// <returns></returns>
         public Rectangle GetSource()
         {
             int width = SpriteFile.Width / SpriteSize;
@@ -101,7 +103,7 @@ namespace SteamPilots
 
         public void Draw(SpriteBatch sb, Vector2 position)
         {
-            sb.Draw(SpriteFile, position, GetSource(), Color.White);
+            sb.Draw(SpriteFile, position, GetSource(), Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
         }
 
         public int CompareTo(Object o)
@@ -111,8 +113,14 @@ namespace SteamPilots
         #endregion
 
         #region No name yet
-        public virtual void OnUse(EntityPlayer player)
+        /// <summary>
+        /// Called when the item is used by an entity
+        /// </summary>
+        /// <param name="player">The entity using it</param>
+        /// <returns>Returns if the item is used</returns>
+        public virtual bool OnUse(EntityPlayer player)
         {
+            return false;
         }
         #endregion
     }
