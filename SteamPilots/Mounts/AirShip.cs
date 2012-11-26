@@ -27,7 +27,7 @@ namespace SteamPilots
             sprite.PlayAnimation("Idle");
 
             requiresGroundToStep = false;
-            stepValue = 300f;
+            //stepValue = 300;
             position = new Vector2(5000f, 500f);
             velocity = new Vector2(0f, 100f);
             drawPriority = 0f;
@@ -56,7 +56,7 @@ namespace SteamPilots
         /// <summary>
         /// Update input
         /// </summary>
-        protected override void UpdateInput()
+        protected override void UpdateInput() 
         {
             if (Input.Instance.KeyDown(Keys.A))
             {
