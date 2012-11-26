@@ -188,9 +188,14 @@ namespace SteamPilots
                                         if (cY == y + tileHeight - 1 && canStep && (isOnGround || !requiresGroundToStep))
                                         {
                                             velocity.Y = -stepValue;
+                                            // perhaps replace with a custom varible so different things/ships lose less/more velocity
+                                            velocity.X *= 0.9f;
                                         }
+                                        else
+                                            velocity.X = 0f;
                                         position.X = (float)(bounds.Left - boundingRect.Width / 2 + 1);
-                                        velocity.X = 0f;
+                                        
+                                        
                                         canStep = false;
                                     }
                                 }
@@ -201,9 +206,12 @@ namespace SteamPilots
                                         if (cY == y + tileHeight - 1 && canStep && (isOnGround || !requiresGroundToStep))
                                         {
                                             velocity.Y = -stepValue;
+                                            // perhaps replace with a custom varible so different things/ships lose less/more velocity
+                                            velocity.X *= 0.9f;
                                         }
+                                        else
+                                            velocity.X = 0f;
                                         position.X = (float)(bounds.Right + boundingRect.Width / 2);
-                                        velocity.X = 0f;
                                         canStep = false;
                                     }
                                 }
