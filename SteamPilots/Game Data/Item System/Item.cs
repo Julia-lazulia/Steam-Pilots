@@ -143,9 +143,9 @@ namespace SteamPilots
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static Tile GetTile(Item item)
+        public static Tile GetTile(int itemid)
         {
-            return this.Tile;
+            return Items[itemid].Tile;
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace SteamPilots
         /// <param name="position"></param>
         public void Draw(SpriteBatch sb, Vector2 position)
         {
-            sb.Draw(SpriteFile, position, GetSource(), Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
+            sb.Draw(SpriteFile, position, GetSource(), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
         public int CompareTo(Object o)
