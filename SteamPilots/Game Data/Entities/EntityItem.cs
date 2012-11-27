@@ -9,6 +9,7 @@ namespace SteamPilots
 {
     public class EntityItem : Entity
     {
+        // The itemstack which the entity refers to
         public ItemStack ItemStack;
 
         public EntityItem(ItemStack ItemStack, Vector2 Position)
