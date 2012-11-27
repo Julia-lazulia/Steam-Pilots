@@ -180,8 +180,7 @@ namespace SteamPilots
         {
             get { return player; }
         }
-
-
+        
         public static float ElapsedSeconds
         {
             get { return (float)instance.gameTime.ElapsedGameTime.TotalSeconds; }

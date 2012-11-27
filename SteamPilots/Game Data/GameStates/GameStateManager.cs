@@ -19,7 +19,6 @@ namespace SteamPilots
         {
             startState.EnterState();
             nextState = startState;
-
         }
 
         public static void SwitchState(IGameState newState)
@@ -52,7 +51,6 @@ namespace SteamPilots
             {
                 currentState.Update(gt);
             }
-
         }
 
         public static void Draw(SpriteBatch sb)
@@ -62,7 +60,5 @@ namespace SteamPilots
                 currentState.Draw(sb);
             }
         }
-
-
     }
 }

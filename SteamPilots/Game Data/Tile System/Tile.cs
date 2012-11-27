@@ -129,9 +129,17 @@ namespace SteamPilots
         {
         }
 
-        public virtual void OnBreak(Entity e)
+        /// <summary>
+        /// Called when a tile is being broken
+        /// </summary>
+        /// <param name="player">The entity breaking it</param>
+        /// <param name="tile">The tile position</param>
+        /// <returns></returns>
+        public bool OnBreak(EntityPlayer player, Vector2 tile)
         {
-
+            EntityItem droppedItem = new EntityItem(new ItemStack(World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex, 1), tile);
+            droppedItem.Spawn();
+            return true; // Using a boolean, not sure if we will need it later on
         }
         #endregion
     }

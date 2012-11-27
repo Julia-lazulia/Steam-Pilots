@@ -140,7 +140,7 @@ namespace SteamPilots
             {
                 Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
                 int tileId = World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y).TileIndex;
-                if ((tileId != Tile.Air.TileIndex && World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y)) && ((ItemTile)Item.Items[tileId]).OnBreak(this, tile))
+                if ((tileId != Tile.Air.TileIndex && World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y)) && Tile.Tiles[currentTile].OnBreak(this, tile))
                 {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Air);
                 }
@@ -151,7 +151,7 @@ namespace SteamPilots
                 Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
                 if (Item.Items[currentTile] is ItemTile && ((ItemTile)Item.Items[currentTile]).OnPlace(this, tile))
                 {
-                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Tiles[currentTile]);
+                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Item.Items[currentTile].Tile);
                 }
             }
 

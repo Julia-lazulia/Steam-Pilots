@@ -7,6 +7,7 @@ namespace SteamPilots
 {
     public class ItemStack
     {
+        // The itemstack data
         public int ItemId;
         public int StackSize;
 
