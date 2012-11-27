@@ -29,7 +29,10 @@ namespace SteamPilots
                     items[index].StackSize += itemstack.StackSize;
                     return true;
                 }
-                else if (items[index] == null)
+            }
+            for (int index = 0; index < items.Length; index++)
+            {
+                if (items[index] == null)
                 {
                     items[index] = itemstack;
                     return true;
@@ -47,15 +50,18 @@ namespace SteamPilots
         {
             for (int index = 0; index < items.Length; index++)
             {
-                if (items[index].ItemId == itemstack.ItemId && items[index].StackSize > itemstack.StackSize)
+                if (items[index] != null)
                 {
-                    items[index].StackSize -= itemstack.StackSize;
-                    return true;
-                }
-                else if (items[index].StackSize == itemstack.StackSize)
-                {
-                    items[index] = null;
-                    return true;
+                    if (items[index].ItemId == itemstack.ItemId && items[index].StackSize > itemstack.StackSize)
+                    {
+                        items[index].StackSize -= itemstack.StackSize;
+                        return true;
+                    }
+                    else if (items[index].ItemId == itemstack.ItemId && items[index].StackSize == itemstack.StackSize)
+                    {
+                        items[index] = null;
+                        return true;
+                    }
                 }
             }
             return false;
