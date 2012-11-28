@@ -24,7 +24,7 @@ namespace SteamPilots
         {
             for (int index = 0; index < items.Length; index++)
             {
-                if (items[index].ItemId == itemstack.ItemId)
+                if (items[index] != null && items[index].ItemId == itemstack.ItemId)
                 {
                     items[index].StackSize += itemstack.StackSize;
                     return true;

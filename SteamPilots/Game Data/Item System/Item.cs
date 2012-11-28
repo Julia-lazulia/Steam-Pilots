@@ -155,7 +155,7 @@ namespace SteamPilots
         public Rectangle GetSource()
         {
             int width = SpriteFile.Width / SpriteSize;
-            return new Rectangle((ItemIndex % width) * SpriteSize, (ItemIndex / width) * SpriteSize, SpriteSize, SpriteSize);
+            return new Rectangle((TextureIndex % width) * SpriteSize, (TextureIndex / width) * SpriteSize, SpriteSize, SpriteSize);
         }
 
         /// <summary>

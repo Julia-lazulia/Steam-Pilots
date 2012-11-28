@@ -137,9 +137,17 @@ namespace SteamPilots
         /// <returns></returns>
         public bool OnBreak(EntityPlayer player, Vector2 tile)
         {
-            EntityItem droppedItem = new EntityItem(new ItemStack(World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex, 1), tile);
+            if(!InRange(player, tile)) return false;
+            // Need to change the tile index into getting the item from the tile id
+            EntityItem droppedItem = new EntityItem(new ItemStack(World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex, 1), tile + World.Instance.CameraPosition);
             droppedItem.Spawn();
-            return true; // Using a boolean, not sure if we will need it later on
+            return true;
+        }
+
+        public bool InRange(Entity entity, Vector2 tile)
+        {
+            tile = new Vector2(tile.X * Tile.SpriteSize, tile.Y * Tile.SpriteSize);
+            return Math.Ceiling(new Vector2(tile.X - entity.BoundingRect.Center.X, tile.Y - entity.BoundingRect.Center.Y).Length() / 16) < 4;
         }
         #endregion
     }

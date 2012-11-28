@@ -16,7 +16,7 @@ namespace SteamPilots
             : base()
         {
             this.ItemStack = ItemStack;
-            this.layer = 1;
+            this.layer = 2;
             this.position = Vector2.Zero;
             this.collidesWithOtherEntities = true;
             this.collidesWithTiles = true;
