@@ -11,8 +11,9 @@ namespace SteamPilots
     {
         // The itemstack which the entity refers to
         public ItemStack ItemStack;
+        public float scale; 
 
-        public EntityItem(ItemStack ItemStack, Vector2 Position)
+        public EntityItem(ItemStack ItemStack, Vector2 Position, float scale)
             : base()
         {
             this.ItemStack = ItemStack;
@@ -22,8 +23,12 @@ namespace SteamPilots
             this.collidesWithTiles = true;
             this.position = Position;
             this.active = true;
+            this.scale = scale;
+            this.tileWidth = 1;
+            this.tileHeight = 1;
             this.boundingRect = new Rectangle((int)Position.X, (int)Position.Y, Item.SpriteSize, Item.SpriteSize);
             this.radius = 2f;
+            this.velocity = new Vector2(0f, 100f);
         }
 
         public override void OnCollide(Entity e)
@@ -38,7 +43,7 @@ namespace SteamPilots
 
         public override void Draw(SpriteBatch sb, float layerDepth)
         {
-            Item.Items[ItemStack.ItemId].Draw(sb, position - World.Instance.CameraPosition);
+            Item.Items[ItemStack.ItemId].Draw(sb, position - World.Instance.CameraPosition, this.scale);
         }
     }
 }

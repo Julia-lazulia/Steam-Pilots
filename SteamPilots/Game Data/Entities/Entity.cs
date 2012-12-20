@@ -141,7 +141,16 @@ namespace SteamPilots
                 drawPriority = -1f;
             }
             if (collidesWithTiles && World.Instance.GetForegroundLayer(layer).HasTiles() && mount == null)
-                DoTileCollision();
+            {
+                if (this is EntityPlayer)
+                {
+                    DoTileCollision();
+                }
+                else
+                {
+                    DoTileCollision();
+                }
+            }
 
          
             if (velocity.Y < 2000f && !isOnGround)

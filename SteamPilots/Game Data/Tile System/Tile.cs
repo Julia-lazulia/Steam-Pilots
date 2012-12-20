@@ -24,6 +24,7 @@ namespace SteamPilots
         public static Tile Dirt = new Tile(1, 0);
         public static Tile Grass = new Tile(2, 65);
         public static Tile Planks = new Tile(3, 99);
+        public static float brokenTileScale = 0.8f;
         #endregion
 
         #region Methods
@@ -81,7 +82,7 @@ namespace SteamPilots
         /// <returns></returns>
         public Rectangle GetBounds(int x, int y)
         {
-            return new Rectangle(x * SpriteSize, y * SpriteSize, (int)(SpriteSize * TileSize.X), (int)(SpriteSize * TileSize.Y));
+            return new Rectangle(x * SpriteSize  , y * SpriteSize, (int)(SpriteSize * TileSize.X), (int)(SpriteSize * TileSize.Y));
         }
 
         /// <summary>
@@ -139,7 +140,11 @@ namespace SteamPilots
         {
             if(!InRange(player, tile)) return false;
             // Need to change the tile index into getting the item from the tile id
-            EntityItem droppedItem = new EntityItem(new ItemStack(World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex, 1), tile + World.Instance.CameraPosition);
+            // tile + World.Instance.CameraPosition
+            Vector2 dropP = new Vector2((float)((int)tile.X * Tile.SpriteSize), (float)((int)tile.Y * Tile.SpriteSize));
+            //dropP.X -= (int)World.Instance.CameraPosition.X;
+            //dropP.Y -= (int)World.Instance.CameraPosition.Y;
+            EntityItem droppedItem = new EntityItem(new ItemStack(World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex, 1), new Vector2(dropP.X, dropP.Y), brokenTileScale);
             droppedItem.Spawn();
             return true;
         }
