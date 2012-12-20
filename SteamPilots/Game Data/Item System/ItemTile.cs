@@ -7,11 +7,13 @@ using Microsoft.Xna.Framework;
 
 namespace SteamPilots
 {
-    public class ItemTile : Item, IPlaceable
+    public class ItemTile : Item, IPlaceable, IInventoryItem
     {
+        public string ToolTip { get { return "ItemTileTooltip"; } set { ToolTip = value; } }
         public ItemTile(int ItemIndex, int TextureIndex)
             : base(ItemIndex, TextureIndex)
         {
+            
         }
 
         /// <summary>
@@ -22,7 +24,7 @@ namespace SteamPilots
         /// <returns></returns>
         public bool OnPlace(EntityPlayer player, Vector2 tile)
         {
-            if (World.Instance.GetForegroundLayer(player.Layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(player.Layer).CanPlace((int)tile.X, (int)tile.Y, Tile.Tiles[player.currentTile]) && InRange(player, tile) && player.inventory.container.RemoveItem(new ItemStack(player.currentTile, 1)))
+            if (World.Instance.GetForegroundLayer(player.Layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(player.Layer).CanPlace((int)tile.X, (int)tile.Y, Tile.Tiles[player.currentTile]) && InRange(player, tile) && player.inventory.container.RemoveItem(new ItemStack(Item.Items[player.currentTile], 1)))
             {
                 World.Instance.GetForegroundLayer(player.Layer).SetTile((int)tile.X, (int)tile.Y, Tile.Tiles[player.currentTile]);
                 return true;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace SteamPilots
 {
@@ -24,7 +26,7 @@ namespace SteamPilots
         {
             for (int index = 0; index < items.Length; index++)
             {
-                if (items[index] != null && items[index].ItemId == itemstack.ItemId)
+                if (items[index] != null && items[index].Item.ItemIndex == itemstack.Item.ItemIndex)
                 {
                     items[index].StackSize += itemstack.StackSize;
                     return true;
@@ -52,12 +54,12 @@ namespace SteamPilots
             {
                 if (items[index] != null)
                 {
-                    if (items[index].ItemId == itemstack.ItemId && items[index].StackSize > itemstack.StackSize)
+                    if (items[index].Item.ItemIndex == itemstack.Item.ItemIndex && items[index].StackSize > itemstack.StackSize)
                     {
                         items[index].StackSize -= itemstack.StackSize;
                         return true;
                     }
-                    else if (items[index].ItemId == itemstack.ItemId && items[index].StackSize == itemstack.StackSize)
+                    else if (items[index].Item.ItemIndex == itemstack.Item.ItemIndex && items[index].StackSize == itemstack.StackSize)
                     {
                         items[index] = null;
                         return true;
@@ -65,6 +67,12 @@ namespace SteamPilots
                 }
             }
             return false;
+        }
+
+        public override void Draw(SpriteBatch s)
+        {
+            if (background != null)
+                s.Draw(background, backgroundPosition, null, backgroundColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.20f);
         }
     }
 }

@@ -10,18 +10,7 @@ namespace SteamPilots
     public class Item : IGameData, IInventoryItem
     {
         #region Item Properties
-        protected String toolTip = "";
-        public String ToolTip
-        {
-            get
-            {
-                return toolTip;
-            }
-            set
-            {
-                toolTip = value;
-            }
-        }
+        public string ToolTip { get { return "ItemTooltip"; } set { ToolTip = value; } }
         protected Tile tile;
         public Tile Tile
         {
@@ -146,6 +135,11 @@ namespace SteamPilots
         public static Tile GetTile(int itemid)
         {
             return Items[itemid].Tile;
+        }
+
+        public Texture2D GetTexture()
+        {
+            return this.SpriteFile;
         }
 
         /// <summary>

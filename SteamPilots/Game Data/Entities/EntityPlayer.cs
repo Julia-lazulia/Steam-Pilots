@@ -16,7 +16,7 @@ namespace SteamPilots
         private const int playerAccel = 2000;
         public AirShip airShip;
         public byte currentTile = 1;
-        public GuiInventory inventory = new GuiInventory();
+        public GuiInventory inventory = null;
         public GuiManager currentGui = null;
         #endregion
 
@@ -49,6 +49,12 @@ namespace SteamPilots
             tileHeight = 2;
             tileWidth = 1;
             spriteEffects = SpriteEffects.None;
+            
+            //Set up GUI
+            currentGui = new GuiManager();
+            inventory = new GuiInventory();
+            inventory.visible = false;
+            currentGui.AddGuiElement(inventory);
         }
 
         /// <summary>
@@ -56,7 +62,10 @@ namespace SteamPilots
         /// </summary>
         public override void Update()
         {
-            if (currentGui != null) currentGui.Update(World.GameTime);
+            if (currentGui != null)
+            {
+                currentGui.Update(World.GameTime);
+            }
             HandleInput();
             base.Update();
         }
@@ -169,8 +178,10 @@ namespace SteamPilots
 
             if (Input.Instance.KeyNewPressed(Keys.I))
             {
-                if (currentGui == null) currentGui = inventory;
-                else if (currentGui is GuiInventory) currentGui = null;
+                //if (currentGui == null) currentGui = inventory;
+                //else if (currentGui is GuiInventory) currentGui = null;
+                //Martin: GUI needs to allways be displayed, we just toggle displaying of the Inventory GUI element with I
+                inventory.visible = !inventory.visible;
             }
 
             if (Input.Instance.KeyNewPressed(Keys.Enter))

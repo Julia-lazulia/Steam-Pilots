@@ -8,12 +8,12 @@ namespace SteamPilots
     public class ItemStack
     {
         // The itemstack data
-        public int ItemId;
+        public Item Item;
         public int StackSize;
 
-        public ItemStack(int ItemId, int StackSize)
+        public ItemStack(Item item, int StackSize)
         {
-            this.ItemId = ItemId;
+            this.Item = item;
             this.StackSize = StackSize;
         }
     }

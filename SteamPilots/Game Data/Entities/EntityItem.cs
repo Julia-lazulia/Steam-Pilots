@@ -43,7 +43,7 @@ namespace SteamPilots
 
         public override void Draw(SpriteBatch sb, float layerDepth)
         {
-            Item.Items[ItemStack.ItemId].Draw(sb, position - World.Instance.CameraPosition, this.scale);
+            Item.Items[ItemStack.Item.ItemIndex].Draw(sb, position - World.Instance.CameraPosition, this.scale);
         }
     }
 }

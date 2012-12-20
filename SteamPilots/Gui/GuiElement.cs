@@ -29,6 +29,7 @@ namespace SteamPilots
 
         public virtual void Draw(SpriteBatch s)
         {
+            s.Draw(tex, this.boundingBox, Color.White);
         }
 
         public bool Contains(Vector2 pos)

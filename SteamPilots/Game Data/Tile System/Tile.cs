@@ -144,7 +144,7 @@ namespace SteamPilots
             Vector2 dropP = new Vector2((float)((int)tile.X * Tile.SpriteSize), (float)((int)tile.Y * Tile.SpriteSize));
             //dropP.X -= (int)World.Instance.CameraPosition.X;
             //dropP.Y -= (int)World.Instance.CameraPosition.Y;
-            EntityItem droppedItem = new EntityItem(new ItemStack(World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex, 1), new Vector2(dropP.X, dropP.Y), brokenTileScale);
+            EntityItem droppedItem = new EntityItem(new ItemStack(Item.Items[World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex], 1), new Vector2(dropP.X, dropP.Y), brokenTileScale);
             droppedItem.Spawn();
             return true;
         }

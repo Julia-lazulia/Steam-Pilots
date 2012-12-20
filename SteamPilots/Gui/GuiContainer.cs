@@ -9,10 +9,10 @@ namespace SteamPilots
 {
     public class GuiContainer : GuiElement
     {
-        private Texture2D background;
-        private Vector2 backgorundPosition;
-        private Color backgroundColor = Color.White;
-        private List<GuiElement> Elements;
+        public Texture2D background;
+        public Vector2 backgroundPosition;
+        protected Color backgroundColor = Color.White;
+        protected List<GuiElement> Elements;
 
         public GuiContainer()
         {
@@ -27,13 +27,13 @@ namespace SteamPilots
 
         public void SetBackgroundPosition(Vector2 pos)
         {
-            backgorundPosition = pos;
+            backgroundPosition = pos;
         }
 
         public override void Draw(SpriteBatch s)
         {
             if (background != null)
-                s.Draw(background, backgorundPosition, backgroundColor);
+                s.Draw(background, backgroundPosition, backgroundColor);
 
             for (var i = 0; i < Elements.Count; i++)
             {
