@@ -2,6 +2,15 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-10-30T17:49:32.5399244+01:00</Time>
+    </Item>
+    <Item>
       <Source>Player\playerIdle.png</Source>
       <Name>Player\playerIdle</Name>
       <Importer>TextureImporter</Importer>
@@ -81,15 +90,6 @@
       <Options>None</Options>
       <Output>C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\Hangarship2.xnb</Output>
       <Time>2012-11-10T19:50:40.672761+01:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Image 17\Desktop\Game development\SteamPilots\Steam-Pilots\SteamPilots\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-10-30T17:49:32.5399244+01:00</Time>
     </Item>
     <Item>
       <Source>items.png</Source>

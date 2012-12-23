@@ -32,8 +32,9 @@ namespace SteamPilots
 
         public override void Draw(SpriteBatch s)
         {
+            Rectangle backgroundRectangle = new Rectangle((int)backgroundPosition.X, (int)backgroundPosition.Y, (int)(Main.ScreenSize.X - backgroundPosition.X), (int)(Main.ScreenSize.Y - backgroundPosition.Y));
             if (background != null)
-                s.Draw(background, backgroundPosition, backgroundColor);
+                s.Draw(background, backgroundRectangle, backgroundColor);
 
             for (var i = 0; i < Elements.Count; i++)
             {
