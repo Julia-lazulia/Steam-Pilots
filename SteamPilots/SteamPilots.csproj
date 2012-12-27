@@ -117,7 +117,7 @@
     <Compile Include="Game Data\GameStates\PlayState.cs" />
     <Compile Include="Game Data\GameStates\StartState.cs" />
     <Compile Include="Game Data\IGameData.cs" />
-    <Compile Include="Game Data\IInventoryItem.cs" />
+    <Compile Include="Game Data\Item System\IInventoryItem.cs" />
     <Compile Include="Game Data\Entities\EntityPlayer.cs" />
     <Compile Include="Game Data\Item System\IPlaceable.cs" />
     <Compile Include="Game Data\Item System\Item.cs" />
@@ -185,6 +185,7 @@
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
