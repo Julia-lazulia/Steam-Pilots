@@ -90,6 +90,9 @@
     <Reference Include="mscorlib">
       <Private>False</Private>
     </Reference>
+    <Reference Include="MusicGen">
+      <HintPath>..\..\..\..\..\Dropbox\Steam Pilots (1)\Music Gen\bin(.dll)01\x86\Debug\MusicGen.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Private>False</Private>
     </Reference>

@@ -1,4 +1,5 @@
 ﻿using System;
+using MusicGen;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -10,12 +11,14 @@ namespace SteamPilots
         private bool _isready;
         private int _fps;
         private bool _debug;
+        private MusicPlayer musicPlayer;
 
         public PlayState(bool _debug)
         {
             _isready = false;
             this._debug = _debug;
-        }
+            musicPlayer = new MusicPlayer();
+        } 
 
         public void EnterState()
         {
@@ -26,11 +29,12 @@ namespace SteamPilots
                 World.Instance.InitializePlayer();
             }
             _isready = true;
+            musicPlayer.PlayMusic(0.1f,Mood.Uplifting);
         }
 
         public void LeaveState()
         {
-            
+            musicPlayer.StopPlayingMusic();
         }
 
         public void Update(GameTime gt)
@@ -52,6 +56,7 @@ namespace SteamPilots
             {
                 _debug = !_debug;
             }
+            musicPlayer.Update(gt);
             World.Instance.Update(gt);
         }
 
