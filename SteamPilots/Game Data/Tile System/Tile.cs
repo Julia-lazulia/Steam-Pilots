@@ -146,6 +146,18 @@ namespace SteamPilots
             //dropP.Y -= (int)World.Instance.CameraPosition.Y;
             EntityItem droppedItem = new EntityItem(new ItemStack(Item.Items[World.Instance.GetForegroundLayer(player.Layer).GetTile((int)tile.X, (int)tile.Y).TileIndex], 1), new Vector2(dropP.X, dropP.Y), brokenTileScale);
             droppedItem.Spawn();
+
+            //Loop trough surrounding entities and make sure they start falling again 
+            Collection<Entity> col = World.Instance.GetForegroundLayer(player.Layer).GetEntities(true);
+            var bBox = new Rectangle((int)dropP.X - 20, (int)dropP.Y - 20, SpriteSize * 2, SpriteSize * 2);
+            foreach (var item in col)
+            {
+                if (bBox.Contains(item.BoundingRect))
+                {
+                    item.Velocity += new Vector2(0, 100f);
+                }
+
+            }
             return true;
         }
 

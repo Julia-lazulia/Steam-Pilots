@@ -22,7 +22,7 @@ namespace SteamPilots
         protected bool collidesWithTiles;
         protected float gravityEffect;
         protected Mount mount;
-        protected bool isOnGround = false;
+        public bool isOnGround = false;
         protected int tileWidth;
         protected int tileHeight;
         protected float stepValue = 100f;
@@ -61,6 +61,8 @@ namespace SteamPilots
         {
             get { return boundingRect; }
         }
+
+
         #endregion
 
         #region Initialization
