@@ -10,33 +10,33 @@ namespace SteamPilots
     public class GuiItemContainer : GuiContainer
     {
         // The item list containing ItemStacks with data
-        public ItemStack[] items;
+        public GuiSlot[] slots;
 
-        public GuiItemContainer()
+        public GuiItemContainer(int slots)
         {
-            items = new ItemStack[80];
+            this.slots = new GuiSlot[slots];
         }
 
         /// <summary>
         /// Tries to add an item to the itemlist
         /// </summary>
-        /// <param name="itemstack">Item to be added</param>
+        /// <param name="ItemStack">Item to be added</param>
         /// <returns>Returns if it's added to the itemlist</returns>
-        public bool AddItemStack(ItemStack itemstack)
+        public bool AddItemStack(ItemStack ItemStack)
         {
-            for (int index = 0; index < items.Length; index++)
+            for (int index = 0; index < slots.Length; index++)
             {
-                if (items[index] != null && items[index].Item.ItemIndex == itemstack.Item.ItemIndex)
+                if (slots[index].ItemStack != null && slots[index].ItemStack.Item.ItemIndex == ItemStack.Item.ItemIndex)
                 {
-                    items[index].StackSize += itemstack.StackSize;
+                    slots[index].ItemStack.StackSize += ItemStack.StackSize;
                     return true;
                 }
             }
-            for (int index = 0; index < items.Length; index++)
+            for (int index = 0; index < slots.Length; index++)
             {
-                if (items[index] == null)
+                if (slots[index].ItemStack == null)
                 {
-                    items[index] = itemstack;
+                    slots[index].ItemStack = ItemStack;
                     return true;
                 }
             }
@@ -46,22 +46,22 @@ namespace SteamPilots
         /// <summary>
         /// Tries to remove an item from the itemlist
         /// </summary>
-        /// <param name="itemstack">Item to be removed</param>
+        /// <param name="ItemStack">Item to be removed</param>
         /// <returns>Returns if it's removed from the itemlist</returns>
-        public bool RemoveItem(ItemStack itemstack)
+        public bool RemoveItemStack(ItemStack ItemStack)
         {
-            for (int index = 0; index < items.Length; index++)
+            for (int index = 0; index < slots.Length; index++)
             {
-                if (items[index] != null)
+                if (slots[index] != null)
                 {
-                    if (items[index].Item.ItemIndex == itemstack.Item.ItemIndex && items[index].StackSize > itemstack.StackSize)
+                    if (slots[index].ItemStack.Item.ItemIndex == ItemStack.Item.ItemIndex && slots[index].ItemStack.StackSize > ItemStack.StackSize)
                     {
-                        items[index].StackSize -= itemstack.StackSize;
+                        slots[index].ItemStack.StackSize -= ItemStack.StackSize;
                         return true;
                     }
-                    else if (items[index].Item.ItemIndex == itemstack.Item.ItemIndex && items[index].StackSize == itemstack.StackSize)
+                    else if (slots[index].ItemStack.Item.ItemIndex == ItemStack.Item.ItemIndex && slots[index].ItemStack.StackSize == ItemStack.StackSize)
                     {
-                        items[index] = null;
+                        slots[index] = null;
                         return true;
                     }
                 }
@@ -73,6 +73,11 @@ namespace SteamPilots
         {
             if (background != null)
                 s.Draw(background, backgroundPosition, null, backgroundColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.20f);
+
+            for (int index = 0; index < slots.Length; index++)
+            {
+                slots[index].Draw(s);
+            }
         }
     }
 }

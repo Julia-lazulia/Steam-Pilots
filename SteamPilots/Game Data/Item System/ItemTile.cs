@@ -24,9 +24,9 @@ namespace SteamPilots
         /// <returns></returns>
         public bool OnPlace(EntityPlayer player, Vector2 tile)
         {
-            if (World.Instance.GetForegroundLayer(player.Layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(player.Layer).CanPlace((int)tile.X, (int)tile.Y, Tile.Tiles[player.currentTile]) && InRange(player, tile) && player.inventory.container.RemoveItem(new ItemStack(Item.Items[player.currentTile], 1)))
+            if (World.Instance.GetForegroundLayer(player.Layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(player.Layer).CanPlace((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].ItemStack.Item.Tile) && InRange(player, tile) && player.inventory.container.RemoveItemStack(new ItemStack(player.inventory.Slots()[player.currentSlot].ItemStack.Item, 1)))
             {
-                World.Instance.GetForegroundLayer(player.Layer).SetTile((int)tile.X, (int)tile.Y, Tile.Tiles[player.currentTile]);
+                World.Instance.GetForegroundLayer(player.Layer).SetTile((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].ItemStack.Item.Tile);
                 return true;
             }
             return false;

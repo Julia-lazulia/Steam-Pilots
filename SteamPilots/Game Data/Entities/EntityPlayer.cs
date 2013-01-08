@@ -15,7 +15,7 @@ namespace SteamPilots
         private const float playerJumpSpeed = 250f;
         private const int playerAccel = 2000;
         public AirShip airShip;
-        public byte currentTile = 1;
+        public byte currentSlot = 0;
         public GuiInventory inventory = null;
         public GuiManager currentGui = null;
         #endregion
@@ -126,30 +126,42 @@ namespace SteamPilots
                     velocity.Y = velocity.Y - gravityEffect / 2f * World.ElapsedSeconds;
             }
             
+            // Changing slots (need to do!)
+            if (Input.Instance.KeyDown(Keys.D0))
+                currentSlot = 0;
             if (Input.Instance.KeyDown(Keys.D1))
-                currentTile = 1;
+                currentSlot = 1;
             if (Input.Instance.KeyDown(Keys.D2))
-                currentTile = 2;
+                currentSlot = 2;
             if (Input.Instance.KeyDown(Keys.D3))
-                currentTile = 3;
+                currentSlot = 3;
             if (Input.Instance.KeyDown(Keys.D4))
-                currentTile = 4;
+                currentSlot = 4;
             if (Input.Instance.KeyDown(Keys.D5))
-                currentTile = 5;
+                currentSlot = 5;
             if (Input.Instance.KeyDown(Keys.D6))
-                currentTile = 6;
+                currentSlot = 6;
             if (Input.Instance.KeyDown(Keys.D7))
-                currentTile = 7;
+                currentSlot = 7;
             if (Input.Instance.KeyDown(Keys.D8))
-                currentTile = 8;
+                currentSlot = 8;
             if (Input.Instance.KeyDown(Keys.D9))
-                currentTile = 9;
-            
+                currentSlot = 9;
+
+            if (Input.Instance.WheelScrolledUp() || Input.Instance.WheelScrolledDown())
+            {
+                int scrollValue = Input.Instance.ScrolledValue();
+                currentSlot += (byte)scrollValue;
+                if (currentSlot > 9) currentSlot = 9;
+                if (currentSlot < 0) currentSlot = 0;
+                Console.WriteLine(currentSlot);
+            }
+
             if (Input.Instance.MouseLeftButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
                 int tileId = World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y).TileIndex;
-                if ((tileId != Tile.Air.TileIndex && World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y)) && Tile.Tiles[currentTile].OnBreak(this, tile))
+                if ((tileId != Tile.Air.TileIndex && World.Instance.GetForegroundLayer(layer).IsValidTile((int)tile.X, (int)tile.Y)) && World.Instance.GetForegroundLayer(layer).GetTile((int)tile.X, (int)tile.Y).OnBreak(this, tile))
                 {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Tile.Air);
                 }
@@ -158,9 +170,9 @@ namespace SteamPilots
             if (Input.Instance.MouseRightButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
-                if (Item.Items[currentTile] is ItemTile && ((ItemTile)Item.Items[currentTile]).OnPlace(this, tile))
+                if (inventory.Slots()[currentSlot].ItemStack.Item is ItemTile && ((ItemTile)inventory.Slots()[currentSlot].ItemStack.Item).OnPlace(this, tile)/*Need to do the tile - item linking and adding OnPlace to item by default*/)
                 {
-                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, Item.Items[currentTile].Tile);
+                    World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, inventory.Slots()[currentSlot].ItemStack.Item.Tile);
                 }
             }
 
@@ -180,7 +192,7 @@ namespace SteamPilots
             {
                 //if (currentGui == null) currentGui = inventory;
                 //else if (currentGui is GuiInventory) currentGui = null;
-                //Martin: GUI needs to allways be displayed, we just toggle displaying of the Inventory GUI element with I
+                //Martin: GUI needs to always be displayed, we just toggle displaying of the Inventory GUI element with I
                 inventory.visible = !inventory.visible;
             }
 

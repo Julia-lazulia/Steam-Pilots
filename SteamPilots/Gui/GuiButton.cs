@@ -24,12 +24,6 @@ namespace SteamPilots
             this.position = new Vector2(x, y);
             this.boundingBox = new Rectangle(x, y, width, height);
             this.text = text;
-            this.LeftClick += LeftClickHandler;
-        }
-
-        void LeftClickHandler(Object sender, EventArgs eventArgs)
-        {
-            Console.WriteLine("BUTTON PRESSED!");
         }
 
         public override void Draw(SpriteBatch s)

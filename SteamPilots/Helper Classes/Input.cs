@@ -109,6 +109,11 @@ namespace SteamPilots
             return cMstate.ScrollWheelValue;
         }
 
+        public int ScrolledValue()
+        {
+            return (cMstate.ScrollWheelValue - pMstate.ScrollWheelValue) / 120;
+        }
+
         /// <summary>
         /// Is the mouse wheel scrolled up?
         /// </summary>

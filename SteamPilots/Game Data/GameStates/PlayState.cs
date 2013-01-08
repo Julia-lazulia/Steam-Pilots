@@ -29,12 +29,12 @@ namespace SteamPilots
                 World.Instance.InitializePlayer();
             }
             _isready = true;
-            musicPlayer.PlayMusic(0.1f,Mood.Uplifting);
+            // musicPlayer.PlayMusic(0.1f,Mood.Uplifting);
         }
 
         public void LeaveState()
         {
-            musicPlayer.StopPlayingMusic();
+            // musicPlayer.StopPlayingMusic();
         }
 
         public void Update(GameTime gt)
@@ -56,7 +56,7 @@ namespace SteamPilots
             {
                 _debug = !_debug;
             }
-            musicPlayer.Update(gt);
+            // musicPlayer.Update(gt);
             World.Instance.Update(gt);
         }
 
