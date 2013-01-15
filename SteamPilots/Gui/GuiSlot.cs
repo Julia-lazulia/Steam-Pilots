@@ -33,5 +33,10 @@ namespace SteamPilots
                 s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), ItemStack.StackSize.ToString(), position + sizeOffset, Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.05f);            
             }
         }
+
+        public Item GetItem()
+        {
+            return ItemStack.Item;
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace SteamPilots
         {
             if (World.Instance.GetForegroundLayer(player.Layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(player.Layer).CanPlace((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].ItemStack.Item.Tile) && InRange(player, tile) && player.inventory.container.RemoveItemStack(new ItemStack(player.inventory.Slots()[player.currentSlot].ItemStack.Item, 1)))
             {
-                World.Instance.GetForegroundLayer(player.Layer).SetTile((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].ItemStack.Item.Tile);
+                World.Instance.GetForegroundLayer(player.Layer).SetTile((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].GetItem().Tile);
                 return true;
             }
             return false;

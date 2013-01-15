@@ -13,6 +13,7 @@ namespace SteamPilots
         public Vector2 backgroundPosition;
         protected Color backgroundColor = Color.White;
         protected List<GuiElement> Elements;
+        protected Rectangle source;
 
         public GuiContainer()
         {
@@ -30,10 +31,15 @@ namespace SteamPilots
             backgroundPosition = pos;
         }
 
+        public void SetSource(Rectangle rect)
+        {
+            source = rect;
+        }
+
         public override void Draw(SpriteBatch s)
         {
             if (background != null)
-                s.Draw(background, backgroundPosition, backgroundColor);
+                s.Draw(background, backgroundPosition, source, backgroundColor);
 
             for (var i = 0; i < Elements.Count; i++)
             {

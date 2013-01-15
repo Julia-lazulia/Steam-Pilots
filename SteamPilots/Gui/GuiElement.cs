@@ -10,7 +10,7 @@ namespace SteamPilots
     public class GuiElement
     {
         protected Rectangle boundingBox;
-        protected Vector2 position;
+        protected Vector2 position; // Not used?
         protected Texture2D tex;
         public Boolean visible = true;
 
@@ -29,7 +29,12 @@ namespace SteamPilots
 
         public virtual void Draw(SpriteBatch s)
         {
-            s.Draw(tex, this.boundingBox, Color.White);
+            s.Draw(tex, boundingBox, Color.White);
+        }
+
+        public virtual void DrawSelection(SpriteBatch s, Rectangle source)
+        {
+            s.Draw(tex, boundingBox, source, Color.White);
         }
 
         public bool Contains(Vector2 pos)

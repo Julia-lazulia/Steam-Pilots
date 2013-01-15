@@ -138,6 +138,7 @@
     <Compile Include="Gui\GuiItemContainer.cs" />
     <Compile Include="Gui\GuiManager.cs" />
     <Compile Include="Gui\GuiPauseMenu.cs" />
+    <Compile Include="Gui\GuiSelection.cs" />
     <Compile Include="Gui\GuiSlot.cs" />
     <Compile Include="Gui\GuiText.cs" />
     <Compile Include="Helper Classes\Collection.cs" />

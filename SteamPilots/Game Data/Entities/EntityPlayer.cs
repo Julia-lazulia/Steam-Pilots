@@ -151,10 +151,11 @@ namespace SteamPilots
             if (Input.Instance.WheelScrolledUp() || Input.Instance.WheelScrolledDown())
             {
                 int scrollValue = Input.Instance.ScrolledValue();
-                currentSlot += (byte)scrollValue;
-                if (currentSlot > 9) currentSlot = 9;
-                if (currentSlot < 0) currentSlot = 0;
-                Console.WriteLine(currentSlot);
+                currentSlot += (byte)scrollValue; // Converting to byte causes -1 to be 255 :/
+                if (currentSlot > 9) currentSlot = 0;
+                if (currentSlot < 0) currentSlot = 9;
+                Console.WriteLine(currentSlot + ", " + (byte)scrollValue); // Testing resulted in the above comment 
+                inventory.UpdateSelection(currentSlot);
             }
 
             if (Input.Instance.MouseLeftButtonNewPressed())
@@ -170,7 +171,7 @@ namespace SteamPilots
             if (Input.Instance.MouseRightButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
-                if (inventory.Slots()[currentSlot].ItemStack.Item is ItemTile && ((ItemTile)inventory.Slots()[currentSlot].ItemStack.Item).OnPlace(this, tile)/*Need to do the tile - item linking and adding OnPlace to item by default*/)
+                if (canPlace(tile) && inventory.container.RemoveItemStack(new ItemStack(inventory.Slots()[currentSlot].GetItem(), 1)))
                 {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, inventory.Slots()[currentSlot].ItemStack.Item.Tile);
                 }
@@ -207,6 +208,14 @@ namespace SteamPilots
             base.Draw(s, layerDepth);
             if(currentGui != null) 
                 currentGui.Draw(s);
+        }
+
+        public bool canPlace(Vector2 position)
+        {
+            if (inventory.Slots()[currentSlot].ItemStack == null || !(inventory.Slots()[currentSlot].GetItem() is ItemTile))
+                return false;
+            ItemTile tile = (ItemTile)inventory.Slots()[currentSlot].GetItem();
+            return inventory.Slots()[currentSlot].GetItem().Tile.InRange(this, position) && tile.OnPlace(this, position);
         }
         #endregion
     }
