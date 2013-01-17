@@ -15,7 +15,7 @@ namespace SteamPilots
         private const float playerJumpSpeed = 250f;
         private const int playerAccel = 2000;
         public AirShip airShip;
-        public byte currentSlot = 0;
+        public int currentSlot = 0;
         public GuiInventory inventory = null;
         public GuiManager currentGui = null;
         #endregion
@@ -148,13 +148,12 @@ namespace SteamPilots
             if (Input.Instance.KeyDown(Keys.D9))
                 currentSlot = 9;
 
-            if (Input.Instance.WheelScrolledUp() || Input.Instance.WheelScrolledDown())
+            if ((Input.Instance.WheelScrolledUp() || Input.Instance.WheelScrolledDown()) && inventory.visible)
             {
                 int scrollValue = Input.Instance.ScrolledValue();
-                currentSlot += (byte)scrollValue; // Converting to byte causes -1 to be 255 :/
+                currentSlot += scrollValue;
                 if (currentSlot > 9) currentSlot = 0;
                 if (currentSlot < 0) currentSlot = 9;
-                Console.WriteLine(currentSlot + ", " + (byte)scrollValue); // Testing resulted in the above comment 
                 inventory.UpdateSelection(currentSlot);
             }
 
@@ -171,7 +170,7 @@ namespace SteamPilots
             if (Input.Instance.MouseRightButtonNewPressed())
             {
                 Vector2 tile = (Input.Instance.MousePosition() / GameStateManager.Main.ScreenScaling + World.Instance.CameraPosition) / Tile.SpriteSize;
-                if (canPlace(tile) && inventory.container.RemoveItemStack(new ItemStack(inventory.Slots()[currentSlot].GetItem(), 1)))
+                if (canPlace(tile))
                 {
                     World.Instance.GetForegroundLayer(layer).SetTile((int)tile.X, (int)tile.Y, inventory.Slots()[currentSlot].ItemStack.Item.Tile);
                 }
@@ -190,17 +189,10 @@ namespace SteamPilots
             }
 
             if (Input.Instance.KeyNewPressed(Keys.I))
-            {
-                //if (currentGui == null) currentGui = inventory;
-                //else if (currentGui is GuiInventory) currentGui = null;
-                //Martin: GUI needs to always be displayed, we just toggle displaying of the Inventory GUI element with I
                 inventory.visible = !inventory.visible;
-            }
 
             if (Input.Instance.KeyNewPressed(Keys.Enter))
-            {
                 World.Instance.DrawTiles = !World.Instance.DrawTiles;
-            }
         }
 
         public override void Draw(SpriteBatch s, float layerDepth)
@@ -212,10 +204,24 @@ namespace SteamPilots
 
         public bool canPlace(Vector2 position)
         {
-            if (inventory.Slots()[currentSlot].ItemStack == null || !(inventory.Slots()[currentSlot].GetItem() is ItemTile))
+            if (inventory.Slots()[currentSlot].ItemStack == null)
+                return false;
+            if (!(inventory.Slots()[currentSlot].GetItem() is ItemTile))
                 return false;
             ItemTile tile = (ItemTile)inventory.Slots()[currentSlot].GetItem();
-            return inventory.Slots()[currentSlot].GetItem().Tile.InRange(this, position) && tile.OnPlace(this, position);
+            return InRange(this, position) && tile.OnPlace(this, position); // MESSY! Need to fix the getItem error, caused by removing the item in OnPlace if and then requesting the item to get placed :|
+        }
+
+        /// <summary>
+        /// Checks wether the selected tile is in range of the entity
+        /// </summary>
+        /// <param name="entity">The entity</param>
+        /// <param name="tile">The tile position</param>
+        /// <returns></returns>
+        public bool InRange(Entity entity, Vector2 tile)
+        {
+            tile = new Vector2(tile.X * Tile.SpriteSize, tile.Y * Tile.SpriteSize);
+            return Math.Ceiling(new Vector2(tile.X - entity.BoundingRect.Center.X, tile.Y - entity.BoundingRect.Center.Y).Length() / 16) < 4;
         }
         #endregion
     }

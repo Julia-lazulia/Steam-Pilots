@@ -32,7 +32,7 @@ namespace SteamPilots
                 container.slots[index] = new GuiSlot((int)position.X, (int)position.Y, Item.SpriteSize, Item.SpriteSize);
             }
 
-            selector = new GuiSelection(new Vector2(container.backgroundPosition.X + 33, container.backgroundPosition.Y + 9));
+            selector = new GuiSelection(new Vector2(container.backgroundPosition.X + 4, container.backgroundPosition.Y + 4));
         }
 
         public override void Draw(SpriteBatch s)

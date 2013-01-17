@@ -24,24 +24,12 @@ namespace SteamPilots
         /// <returns></returns>
         public bool OnPlace(EntityPlayer player, Vector2 tile)
         {
-            if (World.Instance.GetForegroundLayer(player.Layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(player.Layer).CanPlace((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].ItemStack.Item.Tile) && InRange(player, tile) && player.inventory.container.RemoveItemStack(new ItemStack(player.inventory.Slots()[player.currentSlot].ItemStack.Item, 1)))
+            if (World.Instance.GetForegroundLayer(player.Layer).IsValidTile((int)tile.X, (int)tile.Y) && World.Instance.GetForegroundLayer(player.Layer).CanPlace((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].ItemStack.Item.Tile) && player.inventory.container.RemoveItemStack(new ItemStack(player.inventory.Slots()[player.currentSlot].ItemStack.Item, 1)))
             {
                 World.Instance.GetForegroundLayer(player.Layer).SetTile((int)tile.X, (int)tile.Y, player.inventory.Slots()[player.currentSlot].GetItem().Tile);
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// Checks wether the selected tile is in range of the entity
-        /// </summary>
-        /// <param name="entity">The entity</param>
-        /// <param name="tile">The tile position</param>
-        /// <returns></returns>
-        public bool InRange(Entity entity, Vector2 tile)
-        {
-            tile = new Vector2(tile.X * Tile.SpriteSize, tile.Y * Tile.SpriteSize);
-            return Math.Ceiling(new Vector2(tile.X - entity.BoundingRect.Center.X, tile.Y - entity.BoundingRect.Center.Y).Length() / 16) < 4;
         }
     }
 }

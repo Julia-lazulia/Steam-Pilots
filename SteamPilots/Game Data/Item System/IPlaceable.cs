@@ -11,8 +11,5 @@ namespace SteamPilots
     {
         // Called when an item is being placed
         bool OnPlace(EntityPlayer player, Vector2 tile);
-
-        // Checks wether the selected tile is in range of the entity
-        Boolean InRange(Entity entity, Vector2 tile);
     }
 }

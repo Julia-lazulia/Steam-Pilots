@@ -61,7 +61,7 @@ namespace SteamPilots
                     }
                     else if (slots[index].ItemStack.Item.ItemIndex == ItemStack.Item.ItemIndex && slots[index].ItemStack.StackSize == ItemStack.StackSize)
                     {
-                        slots[index] = null;
+                        slots[index].ItemStack = null;
                         return true;
                     }
                 }
