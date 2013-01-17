@@ -17,6 +17,7 @@ namespace SteamPilots
         public AirShip airShip;
         public int currentSlot = 0;
         public GuiInventory inventory = null;
+        public GuiHotbar hotbar = null;
         public GuiManager currentGui = null;
         #endregion
 
@@ -53,8 +54,11 @@ namespace SteamPilots
             //Set up GUI
             currentGui = new GuiManager();
             inventory = new GuiInventory();
+            hotbar = new GuiHotbar();
             inventory.visible = false;
             currentGui.AddGuiElement(inventory);
+            currentGui.AddGuiElement(hotbar);
+
         }
 
         /// <summary>
@@ -148,13 +152,13 @@ namespace SteamPilots
             if (Input.Instance.KeyDown(Keys.D9))
                 currentSlot = 9;
 
-            if ((Input.Instance.WheelScrolledUp() || Input.Instance.WheelScrolledDown()) && inventory.visible)
+            if ((Input.Instance.WheelScrolledUp() || Input.Instance.WheelScrolledDown()))
             {
                 int scrollValue = Input.Instance.ScrolledValue();
                 currentSlot += scrollValue;
                 if (currentSlot > 9) currentSlot = 0;
                 if (currentSlot < 0) currentSlot = 9;
-                inventory.UpdateSelection(currentSlot);
+                hotbar.UpdateSelector(currentSlot);
             }
 
             if (Input.Instance.MouseLeftButtonNewPressed())

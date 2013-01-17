@@ -10,7 +10,6 @@ namespace SteamPilots
     public class GuiInventory : GuiElement
     {
         public GuiItemContainer container;
-        public GuiSelection selector;
 
         public GuiInventory()
             : base()
@@ -31,19 +30,11 @@ namespace SteamPilots
                 Vector2 position = new Vector2(this.container.backgroundPosition.X + xOffset, this.container.backgroundPosition.Y + yOffset);
                 container.slots[index] = new GuiSlot((int)position.X, (int)position.Y, Item.SpriteSize, Item.SpriteSize);
             }
-
-            selector = new GuiSelection(new Vector2(container.backgroundPosition.X + 4, container.backgroundPosition.Y + 4));
         }
 
         public override void Draw(SpriteBatch s)
         {
-            container.Draw(s);
-            selector.DrawSelection(s, new Rectangle(232, 232, 24, 24));
-        }
-
-        public void UpdateSelection(int currentSlot)
-        {
-            selector.UpdatePosition(currentSlot);
+            container.DrawSelection(s);
         }
 
         public GuiSlot[] Slots()

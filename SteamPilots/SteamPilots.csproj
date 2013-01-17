@@ -134,6 +134,7 @@
     <Compile Include="Gui\GuiButton.cs" />
     <Compile Include="Gui\GuiContainer.cs" />
     <Compile Include="Gui\GuiElement.cs" />
+    <Compile Include="Gui\GuiHotbar.cs" />
     <Compile Include="Gui\GuiInventory.cs" />
     <Compile Include="Gui\GuiItemContainer.cs" />
     <Compile Include="Gui\GuiManager.cs" />
