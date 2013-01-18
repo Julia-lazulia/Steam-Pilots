@@ -31,7 +31,7 @@ namespace SteamPilots
             backgroundPosition = pos;
         }
 
-        public void SetSource(Rectangle rect)
+        public void SetBackgroundSource(Rectangle rect)
         {
             source = rect;
         }

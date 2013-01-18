@@ -10,8 +10,10 @@ namespace SteamPilots
     public class GuiElement
     {
         protected Rectangle boundingBox;
-        protected Vector2 position; // Not used?
+        protected Vector2 position = Vector2.Zero;
+        protected Vector2 origin = Vector2.Zero;
         protected Texture2D tex;
+        protected float scale = 1f;
         public Boolean visible = true;
 
         public event EventHandler LeftClick;
@@ -35,6 +37,16 @@ namespace SteamPilots
         public virtual void DrawSelection(SpriteBatch s, Rectangle source)
         {
             s.Draw(tex, boundingBox, source, Color.White);
+        }
+
+        public void SetOrigin(Vector2 origin)
+        {
+            this.origin = origin;
+        }
+
+        public void SetScale(float scale)
+        {
+            this.scale = scale;
         }
 
         public bool Contains(Vector2 pos)

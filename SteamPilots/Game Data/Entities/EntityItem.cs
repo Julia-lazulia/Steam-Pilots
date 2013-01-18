@@ -35,8 +35,8 @@ namespace SteamPilots
         {
             if (e is EntityPlayer)
             {
-                this.Destroy();
-                ((EntityPlayer)e).inventory.container.AddItemStack(ItemStack);
+                if(((EntityPlayer)e).inventory.container.AddItemStack(ItemStack))
+                    this.Destroy();
             }
             base.OnCollide(e);
         }

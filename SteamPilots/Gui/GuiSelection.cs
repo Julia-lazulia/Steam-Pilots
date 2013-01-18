@@ -14,13 +14,13 @@ namespace SteamPilots
         public GuiSelection(Vector2 startPos)
         {
             tex = World.Content.Load<Texture2D>("Player/Selector");
-            boundingBox = new Rectangle((int)startPos.X, (int)startPos.Y, 24, 24);
+            boundingBox = new Rectangle((int)startPos.X, (int)startPos.Y, 48, 48);
             this.startPos = startPos;
         }
 
         public void UpdatePosition(int slot)
         {
-            boundingBox.Y = (int)(startPos.Y - (24 * slot));
+            boundingBox.Y = (int)(startPos.Y - (48 * slot));
         }
     }
 }

@@ -26,7 +26,7 @@ namespace SteamPilots
         {
             for (int index = 0; index < slots.Length; index++)
             {
-                if (slots[index].ItemStack != null && slots[index].ItemStack.Item.ItemIndex == ItemStack.Item.ItemIndex)
+                if (slots[index].ItemStack != null && slots[index].ItemStack.Item.ItemIndex == ItemStack.Item.ItemIndex && !(slots[index].ItemStack.StackSize + ItemStack.StackSize > 99))
                 {
                     slots[index].ItemStack.StackSize += ItemStack.StackSize;
                     return true;
@@ -72,7 +72,7 @@ namespace SteamPilots
         public override void Draw(SpriteBatch s)
         {
             if (background != null)
-                s.Draw(background, backgroundPosition, null, backgroundColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.20f);
+                s.Draw(background, backgroundPosition, null, backgroundColor, 0f, origin, scale, SpriteEffects.None, 0.20f);
 
             for (int index = 0; index < slots.Length; index++)
             {
@@ -83,7 +83,7 @@ namespace SteamPilots
         public void DrawSelection(SpriteBatch s)
         {
             if (background != null)
-                s.Draw(background, backgroundPosition, source, backgroundColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.20f);
+                s.Draw(background, backgroundPosition, source, backgroundColor, 0f, origin, scale, SpriteEffects.None, 0.20f);
 
             for (int index = 0; index < slots.Length; index++)
             {

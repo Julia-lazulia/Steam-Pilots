@@ -21,6 +21,7 @@ namespace SteamPilots
             container = new GuiItemContainer(10);
             container.SetBackground("Player/Hotbar", Color.White);
             container.SetBackgroundPosition(position);
+            container.SetScale(1.5f);
             for (int index = 0; index < container.slots.Length; index++)
             {
                 int xOffset = 9;

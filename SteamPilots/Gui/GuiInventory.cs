@@ -16,19 +16,22 @@ namespace SteamPilots
         {
             container = new GuiItemContainer(80);
             container.SetBackground("Player/Inventory", Color.White);
-            container.SetBackgroundPosition(new Vector2(50, 50));
-            container.SetSource(new Rectangle(0, 0, 245, 231));
+            container.SetBackgroundPosition(new Vector2(Main.ScreenSize.X / 2, Main.ScreenSize.Y / 2));
+            container.SetBackgroundSource(new Rectangle(0, 0, 245, 231));
+            container.SetOrigin(new Vector2(container.background.Width / 2, container.background.Height / 2));
+            container.SetScale(1f);
             for (int index = 0; index < container.slots.Length; index++)
             {
-                int xOffset = index * 24 + 9;
+                int xOffset = ((index % 10) * 24) + 9;
                 int yOffset;
                 if (index < 10)
-                    yOffset = 9;
+                    yOffset = 10;
                 else
-                    yOffset = ((index % 24) * 24) + 19;
+                    yOffset = ((index / 10) * 24) + 42;
 
-                Vector2 position = new Vector2(this.container.backgroundPosition.X + xOffset, this.container.backgroundPosition.Y + yOffset);
+                Vector2 position = new Vector2((this.container.backgroundPosition.X - container.background.Width / 2) + xOffset, (this.container.backgroundPosition.Y - container.background.Height / 2) + yOffset);
                 container.slots[index] = new GuiSlot((int)position.X, (int)position.Y, Item.SpriteSize, Item.SpriteSize);
+                container.slots[index].ItemStack = new ItemStack(Item.Dirt, 1);
             }
         }
 
