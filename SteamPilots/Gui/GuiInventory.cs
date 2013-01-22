@@ -10,6 +10,7 @@ namespace SteamPilots
     public class GuiInventory : GuiElement
     {
         public GuiItemContainer container;
+        public ItemStack heldItem;
 
         public GuiInventory()
             : base()

@@ -15,6 +15,7 @@ namespace SteamPilots
         {
             this.position = new Vector2(x, y);
             this.boundingBox = new Rectangle(x, y, width, height);
+            LeftClick += new EventHandler(LClick);
         }
 
         public GuiSlot(int x, int y, int width, int height, ItemStack itemStack)
@@ -37,6 +38,30 @@ namespace SteamPilots
         public Item GetItem()
         {
             return ItemStack.Item;
+        }
+
+        public void LClick(Object sender, EventArgs args)
+        {
+            Console.WriteLine("CUFRIN");
+            if (World.player.heldStack != null)
+            {
+                if (ItemStack != null)
+                {
+                    ItemStack copyStack = ItemStack;
+                    ItemStack = World.player.heldStack;
+                    World.player.heldStack = copyStack;
+                }
+                else
+                {
+                    ItemStack = World.player.heldStack;
+                    World.player.heldStack = null;
+                }
+            }
+            else
+            {
+                World.player.heldStack = ItemStack;
+                ItemStack = null;
+            }
         }
     }
 }

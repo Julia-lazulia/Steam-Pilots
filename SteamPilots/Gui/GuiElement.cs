@@ -27,6 +27,9 @@ namespace SteamPilots
 
         public virtual void Update(GameTime gt)
         {
+            Vector2 mousePos = Input.Instance.MousePosition();
+            if (Input.Instance.MouseLeftButtonNewPressed() && boundingBox.Contains((int)mousePos.X, (int)mousePos.Y))
+                LeftClick((this), new EventArgs());
         }
 
         public virtual void Draw(SpriteBatch s)

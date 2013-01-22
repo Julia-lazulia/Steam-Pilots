@@ -37,7 +37,7 @@ namespace SteamPilots
 
         Texture2D rectDebugTex;
 
-        EntityPlayer player;
+        public static EntityPlayer player;
         public static Vector2[] Resolutions = new Vector2[99];
         #endregion
 

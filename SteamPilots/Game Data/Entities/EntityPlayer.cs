@@ -19,6 +19,7 @@ namespace SteamPilots
         public GuiInventory inventory = null;
         public GuiHotbar hotbar = null;
         public GuiManager currentGui = null;
+        public ItemStack heldStack = null;
         #endregion
 
         #region Initialization
@@ -204,6 +205,11 @@ namespace SteamPilots
             base.Draw(s, layerDepth);
             if(currentGui != null) 
                 currentGui.Draw(s);
+            if (heldStack != null)
+            {
+                heldStack.Item.Draw(s, Input.Instance.MousePosition(), 0.8f);
+                s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), heldStack.StackSize.ToString(), Input.Instance.MousePosition() + new Vector2(7, 5), Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.05f);
+            }
         }
 
         public bool canPlace(Vector2 position)
