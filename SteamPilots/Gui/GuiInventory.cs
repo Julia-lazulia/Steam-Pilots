@@ -32,7 +32,6 @@ namespace SteamPilots
 
                 Vector2 position = new Vector2((this.container.backgroundPosition.X - container.background.Width / 2) + xOffset, (this.container.backgroundPosition.Y - container.background.Height / 2) + yOffset);
                 container.slots[index] = new GuiSlot((int)position.X, (int)position.Y, Item.SpriteSize, Item.SpriteSize);
-                container.slots[index].ItemStack = new ItemStack(Item.Dirt, 1);
             }
         }
 

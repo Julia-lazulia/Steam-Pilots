@@ -29,6 +29,7 @@ namespace SteamPilots
 
                 Vector2 pos = new Vector2(container.backgroundPosition.X + xOffset, container.backgroundPosition.Y + yOffset);
                 container.slots[index] = new GuiSlot((int)pos.X, (int)pos.Y, Item.SpriteSize, Item.SpriteSize);
+                container.slots[index].ItemStack = World.player.inventory.Slots()[index].ItemStack;
             }
 
             selector = new GuiSelection(new Vector2(position.X + 9, position.Y + (24 * 9) /*Temporary to fix scrolling inverted*/));
