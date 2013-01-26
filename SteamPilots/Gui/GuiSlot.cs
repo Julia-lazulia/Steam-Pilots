@@ -31,7 +31,7 @@ namespace SteamPilots
             {
                 Vector2 sizeOffset = new Vector2(7, 5);
                 s.Draw(ItemStack.Item.GetTexture(), position, ItemStack.Item.GetSource(), Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 0.15f);
-                s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), ItemStack.StackSize.ToString(), position + sizeOffset, Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.05f);            
+                s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), ItemStack.StackSize.ToString(), position + sizeOffset, Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.10f);            
             }
         }
 
@@ -40,7 +40,7 @@ namespace SteamPilots
             return ItemStack.Item;
         }
 
-        public void LClick(Object sender, EventArgs args)
+        void LClick(Object sender, EventArgs args)
         {
             Console.WriteLine("CUFRIN");
             if (World.player.heldStack != null)

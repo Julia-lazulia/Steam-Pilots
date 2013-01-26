@@ -157,9 +157,9 @@ namespace SteamPilots
         /// </summary>
         /// <param name="sb"></param>
         /// <param name="position"></param>
-        public void Draw(SpriteBatch sb, Vector2 position, float scale)
+        public void Draw(SpriteBatch sb, Vector2 position, float scale, float layerDepth)
         {
-            sb.Draw(SpriteFile, position, GetSource(), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            sb.Draw(SpriteFile, position, GetSource(), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
         }
 
         public int CompareTo(Object o)

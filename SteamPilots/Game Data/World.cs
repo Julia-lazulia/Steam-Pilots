@@ -94,7 +94,7 @@ namespace SteamPilots
         /// <summary>
         /// Updates the world
         /// </summary>
-        /// <param name="gameTime">GameTime</param>
+        /// <param name="gameTime">GameTime</param>                  // NEED TO CLEAN THE RESOLUTION STUFF!!
         public void Update(GameTime gameTime)
         {
             this.gameTime = gameTime;
@@ -111,7 +111,6 @@ namespace SteamPilots
             {
                 resolutionNum++;
             }
-
 
             cameraViewArea.X = (int)(cameraPosition.X) - DRAW_MARGIN;
             cameraViewArea.Y = (int)(cameraPosition.Y) - DRAW_MARGIN;

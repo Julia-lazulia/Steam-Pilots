@@ -20,7 +20,6 @@ namespace SteamPilots
             container.SetBackgroundPosition(new Vector2(Main.ScreenSize.X / 2, Main.ScreenSize.Y / 2));
             container.SetBackgroundSource(new Rectangle(0, 0, 245, 231));
             container.SetOrigin(new Vector2(container.background.Width / 2, container.background.Height / 2));
-            container.SetScale(1f);
             for (int index = 0; index < container.slots.Length; index++)
             {
                 int xOffset = ((index % 10) * 24) + 9;
@@ -37,7 +36,7 @@ namespace SteamPilots
 
         public override void Draw(SpriteBatch s)
         {
-            container.DrawSelection(s);
+            container.Draw(s);
         }
 
         public GuiSlot[] Slots()

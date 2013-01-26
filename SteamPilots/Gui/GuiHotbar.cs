@@ -21,7 +21,6 @@ namespace SteamPilots
             container = new GuiItemContainer(10);
             container.SetBackground("Player/Hotbar", Color.White);
             container.SetBackgroundPosition(position);
-            container.SetScale(1.5f);
             for (int index = 0; index < container.slots.Length; index++)
             {
                 int xOffset = 9;
@@ -29,7 +28,6 @@ namespace SteamPilots
 
                 Vector2 pos = new Vector2(container.backgroundPosition.X + xOffset, container.backgroundPosition.Y + yOffset);
                 container.slots[index] = new GuiSlot((int)pos.X, (int)pos.Y, Item.SpriteSize, Item.SpriteSize);
-                container.slots[index].ItemStack = World.player.inventory.Slots()[index].ItemStack;
             }
 
             selector = new GuiSelection(new Vector2(position.X + 9, position.Y + (24 * 9) /*Temporary to fix scrolling inverted*/));
@@ -44,6 +42,12 @@ namespace SteamPilots
         public void UpdateSelector(int slot)
         {
             selector.UpdatePosition(slot);
+        }
+
+        public override void Update(GameTime gt)
+        {
+            for (int index = 0; index < container.slots.Length; index++)
+                container.slots[index].ItemStack = World.player.inventory.Slots()[index].ItemStack;
         }
 
         public GuiSlot[] Slots()

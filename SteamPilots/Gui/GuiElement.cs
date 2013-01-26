@@ -10,10 +10,11 @@ namespace SteamPilots
     public class GuiElement
     {
         protected Rectangle boundingBox;
+        protected Rectangle source;
         protected Vector2 position = Vector2.Zero;
         protected Vector2 origin = Vector2.Zero;
+        protected float rotation = 0f;
         protected Texture2D tex;
-        protected float scale = 1f;
         public Boolean visible = true;
 
         public event EventHandler LeftClick;
@@ -28,28 +29,16 @@ namespace SteamPilots
         public virtual void Update(GameTime gt)
         {
             Vector2 mousePos = Input.Instance.MousePosition();
-            if (Input.Instance.MouseLeftButtonNewPressed() && boundingBox.Contains((int)mousePos.X, (int)mousePos.Y))
-                LeftClick((this), new EventArgs());
         }
 
         public virtual void Draw(SpriteBatch s)
         {
-            s.Draw(tex, boundingBox, Color.White);
-        }
-
-        public virtual void DrawSelection(SpriteBatch s, Rectangle source)
-        {
-            s.Draw(tex, boundingBox, source, Color.White);
+            s.Draw(tex, position, source, Color.White, rotation, origin, Main.guiScale, SpriteEffects.None, 0.50f);
         }
 
         public void SetOrigin(Vector2 origin)
         {
             this.origin = origin;
-        }
-
-        public void SetScale(float scale)
-        {
-            this.scale = scale;
         }
 
         public bool Contains(Vector2 pos)
@@ -60,11 +49,13 @@ namespace SteamPilots
 
         public void LClick()
         {
-            LeftClick(this, EventArgs.Empty);
+            if (LeftClick != null)
+                LeftClick(this, EventArgs.Empty);
         }
         public void RClick()
         {
-            RightClick(this, EventArgs.Empty);
+            if (LeftClick != null)
+                RightClick(this, EventArgs.Empty);
         }
     }
 }
