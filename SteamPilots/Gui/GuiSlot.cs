@@ -15,7 +15,7 @@ namespace SteamPilots
         {
             this.position = new Vector2(x, y);
             this.boundingBox = new Rectangle(x, y, width, height);
-            LeftClick += new EventHandler(LClick);
+            this.LeftClick += LClick;
         }
 
         public GuiSlot(int x, int y, int width, int height, ItemStack itemStack)
@@ -30,8 +30,8 @@ namespace SteamPilots
             if (ItemStack != null)
             {
                 Vector2 sizeOffset = new Vector2(7, 5);
-                s.Draw(ItemStack.Item.GetTexture(), position, ItemStack.Item.GetSource(), Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 0.15f);
-                s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), ItemStack.StackSize.ToString(), position + sizeOffset, Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.10f);            
+                s.Draw(ItemStack.Item.GetTexture(), position, ItemStack.Item.GetSource(), Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 0.015f);
+                s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), ItemStack.StackSize.ToString(), position + sizeOffset, Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.01f);            
             }
         }
 
@@ -42,7 +42,7 @@ namespace SteamPilots
 
         void LClick(Object sender, EventArgs args)
         {
-            Console.WriteLine("CUFRIN");
+            Console.WriteLine("TEST?!");
             if (World.player.heldStack != null)
             {
                 if (ItemStack != null)

@@ -17,8 +17,9 @@ namespace SteamPilots
         public static Vector2 ScreenSize;
         public static bool ScaleToScreen;
         public static float guiScale = 1f;
+        public static bool hasFocus = false;
         private SpriteBatch spriteBatch;        
-
+        
         public Main()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -62,6 +63,7 @@ namespace SteamPilots
         protected override void Update(GameTime gameTime)
         {
             GameStateManager.Update(gameTime);
+            hasFocus = this.IsActive;
 
             base.Update(gameTime);
         }

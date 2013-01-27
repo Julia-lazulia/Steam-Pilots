@@ -41,7 +41,7 @@ namespace SteamPilots
         {
             if (World.Instance.CameraViewRect.Contains(boundingRect))
             {
-                sb.Draw(cloudTex, position - World.Instance.CameraPosition, null, Color.White, 0f, Vector2.Zero, 1f, spriteEffects, layerDepth);
+                sb.Draw(cloudTex, position - World.Instance.CameraPosition, null, Color.White, 0f, Vector2.Zero, 1f, spriteEffects, layerDepth - 0.02f);
             }
         }
     }

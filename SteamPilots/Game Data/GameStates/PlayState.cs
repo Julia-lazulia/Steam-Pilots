@@ -52,6 +52,10 @@ namespace SteamPilots
             {
                 World.Instance.Player.currentGui = null;
             }
+            if (!Main.hasFocus)
+            {
+                GameStateManager.SwitchState(new PauseState(_debug));
+            }
             if (Input.Instance.KeyNewPressed(Keys.F3))
             {
                 _debug = !_debug;

@@ -21,7 +21,7 @@ namespace SteamPilots
 
         public override void Draw(SpriteBatch s)
         {
-            s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), text, new Vector2(x, y), Color.Blue);
+            s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), text, new Vector2(x, y), Color.Blue, 0f, Vector2.Zero, Main.guiScale, SpriteEffects.None, 0.02f);
         }
     }
 }

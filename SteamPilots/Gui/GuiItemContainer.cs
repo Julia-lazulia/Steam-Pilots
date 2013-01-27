@@ -72,7 +72,7 @@ namespace SteamPilots
         public override void Draw(SpriteBatch s)
         {
             if (background != null)
-                s.Draw(background, backgroundPosition, backgroundSource, backgroundColor, 0f, origin, Main.guiScale, SpriteEffects.None, 0.20f);
+                s.Draw(background, backgroundPosition, backgroundSource, backgroundColor, 0f, origin, Main.guiScale, SpriteEffects.None, 0.04f);
 
             for (int index = 0; index < slots.Length; index++)
             {

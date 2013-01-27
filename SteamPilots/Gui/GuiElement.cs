@@ -33,7 +33,7 @@ namespace SteamPilots
 
         public virtual void Draw(SpriteBatch s)
         {
-            s.Draw(tex, position, source, Color.White, rotation, origin, Main.guiScale, SpriteEffects.None, 0.50f);
+            s.Draw(tex, position, source, Color.White, rotation, origin, Main.guiScale, SpriteEffects.None, 0.02f);
         }
 
         public void SetOrigin(Vector2 origin)

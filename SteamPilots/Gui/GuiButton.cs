@@ -28,8 +28,8 @@ namespace SteamPilots
 
         public override void Draw(SpriteBatch s)
         {
-            s.Draw(tex, boundingBox, Color.White);
-            s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), text, position, Color.White);
+            s.Draw(tex, position, null, Color.White, 0f, Vector2.Zero, Main.guiScale, SpriteEffects.None, 0.025f);
+            s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), text, position, Color.White, 0f, Vector2.Zero, Main.guiScale, SpriteEffects.None, 0.02f);
         }
     }
 }
