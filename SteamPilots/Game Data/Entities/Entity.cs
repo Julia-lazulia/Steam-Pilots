@@ -32,8 +32,20 @@ namespace SteamPilots
 
         public Vector2 Position
         {
-            get { return position; }
+            get
+            {
+
+                return position;
+            }
             set { position = value; }
+        }
+
+        public Vector2 Center
+        {
+            get
+            {
+                return new Vector2(this.position.X + (boundingRect.Width / 2), this.position.Y + (boundingRect.Height / 2));
+            }
         }
 
         public Vector2 Velocity
@@ -44,7 +56,7 @@ namespace SteamPilots
 
         public int Layer
         {
-            get { return layer; } 
+            get { return layer; }
         }
 
         public bool CollidesWithTiles
@@ -60,6 +72,11 @@ namespace SteamPilots
         public Rectangle BoundingRect
         {
             get { return boundingRect; }
+        }
+
+        public float Radius
+        {
+            get { return radius; }
         }
 
 
@@ -110,7 +127,7 @@ namespace SteamPilots
         /// </summary>
         public virtual void Update()
         {
-            if(sprite != null)
+            if (sprite != null)
                 sprite.Update();
             if (collidesWithOtherEntities && mount == null)
             {
@@ -118,7 +135,7 @@ namespace SteamPilots
                 for (int index = 0; index < entities.Length; index++)
                 {
                     Entity entity = entities[index];
-                    if (entity != this && entity.collidesWithOtherEntities)
+                    if (entity != this && entity.collidesWithOtherEntities && !(entity is EntityPlayer))
                     {
                         float distance = Vector2.Distance(entity.position, position);
                         if (distance < radius + entity.radius)
@@ -154,10 +171,10 @@ namespace SteamPilots
                 }
             }
 
-         
+
             if (velocity.Y < 2000f && !isOnGround)
                 velocity.Y = velocity.Y + gravityEffect * World.ElapsedSeconds;
-             
+
         }
 
         /// <summary>
@@ -205,8 +222,8 @@ namespace SteamPilots
                                         else
                                             velocity.X = 0f;
                                         position.X = (float)(bounds.Left - boundingRect.Width / 2 + 1);
-                                        
-                                        
+
+
                                         canStep = false;
                                     }
                                 }
@@ -282,6 +299,9 @@ namespace SteamPilots
         public virtual void Draw(SpriteBatch s, float layerDepth)
         {
             sprite.Draw(s, position - World.Instance.CameraPosition, 1f, 0f, spriteEffects, Color.White, layerDepth);
+            if (World.debug)
+                s.Draw(World.debugTex, new Rectangle((int)Position.X - (int)World.Instance.CameraPosition.X, (int)Position.Y - (int)World.Instance.CameraPosition.Y, 2, 2), null, Color.Red, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+
         }
 
         /// <summary>

@@ -14,6 +14,9 @@ namespace SteamPilots
         private const float playerMaxSpeed = 100f;
         private const float playerJumpSpeed = 250f;
         private const int playerAccel = 2000;
+        private const float magnetRange = 30f;
+        
+
         public AirShip airShip;
         public int currentSlot = 0;
         public GuiInventory inventory = null;
@@ -72,7 +75,59 @@ namespace SteamPilots
                 currentGui.Update(World.GameTime);
             }
             HandleInput();
-            base.Update();
+
+            if (sprite != null)
+                sprite.Update();
+
+            if (CollidesWithEntities && mount == null)
+            {
+                Entity[] entities = World.Instance.GetForegroundLayer(layer).GetEntities(active).ToArray();
+                for (int index = 0; index < entities.Length; index++)
+                {
+                    Entity entity = entities[index];
+                    if (entity != this && entity.CollidesWithEntities)
+                    {
+                        float distance = Vector2.Distance(entity.Center, this.Position);
+                        if (distance < 6f + entity.Radius)
+                        {
+                            OnCollide(entity); // OnCollide(entity);
+                        }
+                        if (distance < entity.Radius + magnetRange)
+                        {
+                            Vector2 moveTo = this.Position - entity.Center;
+                            moveTo.Normalize();
+                            entity.Velocity += moveTo;
+                            entity.Velocity.Normalize();
+                            
+                        }
+                    
+                    }
+                }
+            }
+            if (mount == null)
+            {
+                if (velocity.Length() != 0f)
+                {
+                    position += velocity * World.ElapsedSeconds;
+                    position.X = MathHelper.Clamp(position.X, 0f, (float)(World.Width * 16));
+                    position.Y = MathHelper.Clamp(position.Y, 0f, (float)(World.Height * 16));
+                }
+            }
+                /*
+            else
+            {
+                position = mount.Position + mount.GetPlayerOffset();
+                velocity = Vector2.Zero;
+                spriteEffects = mount.
+                drawPriority = -1f;
+            }*/
+            if (collidesWithTiles && World.Instance.GetForegroundLayer(layer).HasTiles() && mount == null)
+            {
+                DoTileCollision();
+            }            
+
+            if (velocity.Y < 2000f && !isOnGround)
+                velocity.Y = velocity.Y + gravityEffect * World.ElapsedSeconds;
         }
 
         /// <summary>
@@ -210,6 +265,16 @@ namespace SteamPilots
                 heldStack.Item.Draw(s, Input.Instance.MousePosition(), 0.8f, 0.005f);
                 s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), heldStack.StackSize.ToString(), Input.Instance.MousePosition() + new Vector2(7, 5), Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.004f);
             }
+        }
+
+        public override void OnCollide(Entity e)
+        {
+            if(e is EntityItem)
+            {
+                if (this.inventory.container.AddItemStack(((EntityItem)e).ItemStack))
+                    e.Destroy();            
+            }
+            base.OnCollide(e);
         }
 
         public bool canPlace(Vector2 position)

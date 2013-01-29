@@ -53,7 +53,9 @@ namespace SteamPilots
 
         protected override void LoadContent()
         {
-
+            Texture2D t = new Texture2D(GraphicsDevice, 2, 2);
+            t.SetData<Color>(new Color[] { Color.White, Color.White, Color.White, Color.White });
+            World.debugTex = t;
         }
 
         protected override void UnloadContent()

@@ -12,6 +12,10 @@ namespace SteamPilots
         static int WORLD_HEIGHT = 12000;
         static int DRAW_MARGIN = 64;
 
+        public static bool debug = true;
+        public static Texture2D debugTex;
+
+
         #region Singleton
         static World instance;
         public static World Instance

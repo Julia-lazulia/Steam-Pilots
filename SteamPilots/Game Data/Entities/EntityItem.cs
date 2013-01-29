@@ -44,6 +44,8 @@ namespace SteamPilots
         public override void Draw(SpriteBatch sb, float layerDepth)
         {
             Item.Items[ItemStack.Item.ItemIndex].Draw(sb, position - World.Instance.CameraPosition, this.scale, layerDepth - 0.01f);
+            if(World.debug)
+                sb.Draw(World.debugTex, new Rectangle((int)this.Center.X - (int)World.Instance.CameraPosition.X, (int)this.Center.Y - (int)World.Instance.CameraPosition.Y, 2, 2), null, Color.Yellow, 0f, Vector2.Zero, SpriteEffects.None, 0f);
         }
     }
 }

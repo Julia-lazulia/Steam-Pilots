@@ -129,6 +129,11 @@ namespace SteamPilots
             return playingAnimation.Texture;
         }
 
+        public Animation GetPlayingAnimation()
+        {
+            return playingAnimation;
+        }
+
         /// <summary>
         /// Gives the origin of the current animation
         /// </summary>
@@ -168,6 +173,11 @@ namespace SteamPilots
         public void PlayAnimation(string name)
         {
             animationPlayer.PlayAnimation(name);
+        }
+
+        public Vector2 GetTexWidthHeight()
+        {
+            return new Vector2(animationPlayer.GetPlayingAnimation().FrameWidth,animationPlayer.GetTexture().Height);
         }
 
         /// <summary>
