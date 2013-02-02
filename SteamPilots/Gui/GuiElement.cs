@@ -16,6 +16,7 @@ namespace SteamPilots
         protected float rotation = 0f;
         protected Texture2D tex;
         public Boolean visible = true;
+        public Boolean CanClose = true;
 
         public event EventHandler LeftClick;
         public event EventHandler RightClick;

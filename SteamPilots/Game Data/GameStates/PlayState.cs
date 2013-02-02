@@ -44,13 +44,9 @@ namespace SteamPilots
             {
                 GameStateManager.SwitchState(new BuildState());
             }
-            if (Input.Instance.KeyNewPressed(Keys.Escape) && World.Instance.Player.currentGui == null)
+            if (Input.Instance.KeyNewPressed(Keys.Escape))
             {
                 GameStateManager.SwitchState(new PauseState(_debug));
-            }
-            else if (Input.Instance.KeyNewPressed(Keys.Escape))
-            {
-                World.Instance.Player.currentGui = null;
             }
             if (!Main.hasFocus)
             {

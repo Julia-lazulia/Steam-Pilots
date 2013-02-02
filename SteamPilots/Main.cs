@@ -16,7 +16,7 @@ namespace SteamPilots
         GraphicsDeviceManager graphics;
         public static Vector2 ScreenSize;
         public static bool ScaleToScreen;
-        public static float guiScale = 1f;
+        public static float guiScale = 2f;
         public static bool hasFocus = false;
         private SpriteBatch spriteBatch;        
         

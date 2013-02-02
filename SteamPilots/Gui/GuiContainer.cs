@@ -23,6 +23,7 @@ namespace SteamPilots
         public void SetBackground(String path, Color backgroundColor)
         {
             background = World.Content.Load<Texture2D>(path);
+            backgroundSource = new Rectangle(0, 0, background.Width, background.Height);
             this.backgroundColor = backgroundColor;
         }
 
@@ -39,7 +40,7 @@ namespace SteamPilots
         public override void Draw(SpriteBatch s)
         {
             if (background != null)
-                s.Draw(background, backgroundPosition, source, backgroundColor, 0f, Vector2.Zero, Main.guiScale, SpriteEffects.None, 0.03f);
+                s.Draw(background, backgroundPosition, backgroundSource, backgroundColor, 0f, Vector2.Zero, Main.guiScale, SpriteEffects.None, 0.03f);
 
             for (var i = 0; i < Elements.Count; i++)
             {

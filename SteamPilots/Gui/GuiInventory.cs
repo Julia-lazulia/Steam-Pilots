@@ -22,15 +22,16 @@ namespace SteamPilots
             container.SetOrigin(new Vector2(container.background.Width / 2, container.background.Height / 2));
             for (int index = 0; index < container.slots.Length; index++)
             {
-                int xOffset = ((index % 10) * 24) + 9;
+                int xOffset = (int)((((index % 10) * 24) + 9) * Main.guiScale);
                 int yOffset;
                 if (index < 10)
-                    yOffset = 10;
+                    yOffset = (int)(10 * Main.guiScale);
                 else
-                    yOffset = ((index / 10) * 24) + 42;
+                    yOffset = (int)((((index / 10) * 24) + 42) * Main.guiScale);
 
                 Vector2 position = new Vector2((this.container.backgroundPosition.X - container.background.Width / 2) + xOffset, (this.container.backgroundPosition.Y - container.background.Height / 2) + yOffset);
                 container.slots[index] = new GuiSlot((int)position.X, (int)position.Y, Item.SpriteSize, Item.SpriteSize);
+                container.slots[index].LeftClick += container.slots[index].LClick;
             }
         }
 

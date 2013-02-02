@@ -15,7 +15,6 @@ namespace SteamPilots
         {
             this.position = new Vector2(x, y);
             this.boundingBox = new Rectangle(x, y, width, height);
-            this.LeftClick += LClick;
         }
 
         public GuiSlot(int x, int y, int width, int height, ItemStack itemStack)
@@ -29,9 +28,9 @@ namespace SteamPilots
         {
             if (ItemStack != null)
             {
-                Vector2 sizeOffset = new Vector2(7, 5);
-                s.Draw(ItemStack.Item.GetTexture(), position, ItemStack.Item.GetSource(), Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 0.015f);
-                s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), ItemStack.StackSize.ToString(), position + sizeOffset, Color.White, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.01f);            
+                Vector2 sizeOffset = new Vector2(7 * Main.guiScale, 5 * Main.guiScale);
+                s.Draw(ItemStack.Item.GetTexture(), position, ItemStack.Item.GetSource(), Color.White, 0f, Vector2.Zero, 0.8f * Main.guiScale, SpriteEffects.None, 0.015f);
+                s.DrawString(World.Content.Load<SpriteFont>("SpriteFont1"), ItemStack.StackSize.ToString(), position + sizeOffset, Color.White, 0f, Vector2.Zero, 0.6f * Main.guiScale, SpriteEffects.None, 0.01f);            
             }
         }
 
@@ -40,7 +39,7 @@ namespace SteamPilots
             return ItemStack.Item;
         }
 
-        void LClick(Object sender, EventArgs args)
+        public void LClick(Object sender, EventArgs args)
         {
             Console.WriteLine("TEST?!");
             if (World.player.heldStack != null)
