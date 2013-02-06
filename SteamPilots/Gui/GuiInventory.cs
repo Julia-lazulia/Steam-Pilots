@@ -15,7 +15,7 @@ namespace SteamPilots
         public GuiInventory()
             : base()
         {
-            container = new GuiItemContainer(80);
+            container = new GuiItemContainer(50);
             container.SetBackground("Player/Inventory", Color.White);
             container.SetBackgroundPosition(new Vector2(Main.ScreenSize.X / 2, Main.ScreenSize.Y / 2));
             container.SetBackgroundSource(new Rectangle(0, 0, 245, 231));
@@ -29,9 +29,8 @@ namespace SteamPilots
                 else
                     yOffset = (int)((((index / 10) * 24) + 42) * Main.guiScale);
 
-                Vector2 position = new Vector2((this.container.backgroundPosition.X - container.background.Width / 2) + xOffset, (this.container.backgroundPosition.Y - container.background.Height / 2) + yOffset);
+                Vector2 position = new Vector2((this.container.backgroundPosition.X - (container.background.Width * Main.guiScale) / 2) + xOffset, (this.container.backgroundPosition.Y - (container.background.Height * Main.guiScale) / 2) + yOffset);
                 container.slots[index] = new GuiSlot((int)position.X, (int)position.Y, Item.SpriteSize, Item.SpriteSize);
-                container.slots[index].LeftClick += container.slots[index].LClick;
             }
         }
 

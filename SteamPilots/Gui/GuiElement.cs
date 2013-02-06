@@ -16,20 +16,32 @@ namespace SteamPilots
         protected float rotation = 0f;
         protected Texture2D tex;
         public Boolean visible = true;
-        public Boolean CanClose = true;
 
         public event EventHandler LeftClick;
         public event EventHandler RightClick;
         public event EventHandler MouseOn;
         public event EventHandler MouseOff;
+        public event EventHandler ScaleChanged;
 
         public GuiElement()
         {
+            ScaleChanged += UpdateBoundingBox;
         }
 
         public virtual void Update(GameTime gt)
         {
             Vector2 mousePos = Input.Instance.MousePosition();
+        }
+
+        void UpdateBoundingBox(object sender, EventArgs args)
+        {
+            if (boundingBox != null)
+            {
+                boundingBox.X *= (int)Main.guiScale;
+                boundingBox.Y *= (int)Main.guiScale;
+                boundingBox.Width *= (int)Main.guiScale;
+                boundingBox.Height *= (int)Main.guiScale;
+            }
         }
 
         public virtual void Draw(SpriteBatch s)

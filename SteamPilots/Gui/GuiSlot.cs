@@ -15,6 +15,7 @@ namespace SteamPilots
         {
             this.position = new Vector2(x, y);
             this.boundingBox = new Rectangle(x, y, width, height);
+            LeftClick += LClick;
         }
 
         public GuiSlot(int x, int y, int width, int height, ItemStack itemStack)
@@ -39,7 +40,7 @@ namespace SteamPilots
             return ItemStack.Item;
         }
 
-        public void LClick(Object sender, EventArgs args)
+        void LClick(Object sender, EventArgs args)
         {
             Console.WriteLine("TEST?!");
             if (World.player.heldStack != null)

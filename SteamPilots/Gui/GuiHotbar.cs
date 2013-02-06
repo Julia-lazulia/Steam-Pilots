@@ -23,8 +23,8 @@ namespace SteamPilots
             container.SetBackgroundPosition(position);
             for (int index = 0; index < container.slots.Length; index++)
             {
-                int xOffset = 9;
-                int yOffset = index * 24;
+                int xOffset = (int)(9 * Main.guiScale);
+                int yOffset = (int)((index * 24) * Main.guiScale);
 
                 Vector2 pos = new Vector2(container.backgroundPosition.X + xOffset, container.backgroundPosition.Y + yOffset);
                 container.slots[index] = new GuiSlot((int)pos.X, (int)pos.Y, Item.SpriteSize, Item.SpriteSize);
